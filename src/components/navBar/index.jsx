@@ -1,9 +1,11 @@
 import './style.css';
 
+import logo from '../../assets/logo/logo.png';
+
 const NavBar = () => {
     return <header>
         <a className={"logo"} href={"/"}>
-            <img src="https://i.pinimg.com/originals/fd/5c/22/fd5c22af8d5b84d301de072995443386.png" />
+            <img src={logo}/>
         </a>
         <nav>
             <ul>
