@@ -3,7 +3,7 @@ import './style.css';
 import logo from '../../assets/logo/logo.png';
 
 const NavBar = () => {
-    return <header>
+    return <header className={"app-width"}>
         <a className={"logo"} href={"/"}>
             <img src={logo}/>
         </a>

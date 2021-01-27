@@ -1,5 +1,4 @@
 header {
-    width: 100%;
     padding: 1rem;
     text-align: center;
     display: flex;
@@ -12,7 +11,7 @@ header .logo img {
     height: 4rem;
 }
 header nav {
-    width: 80%;
+    width: 100%;
     margin: 1rem;
     border-radius: 5px;
     background-color: white;

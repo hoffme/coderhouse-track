@@ -7,6 +7,20 @@
   pointer-events: none;
 }
 
+.app-width {
+  width: calc(100% - 1rem);
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+@media (min-width: calc(1000px + 1rem)) {
+  .app-width {
+    width: 1000px;
+    padding-left: calc(50% - 500px);
+    padding-right: calc(50% - 500px);
+  }
+}
+
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
