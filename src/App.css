@@ -8,15 +8,15 @@
 }
 
 .app-width {
-  width: calc(100% - 1rem);
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
+  width: calc(100% - 1rem) !important;
+  padding-left: 0.5rem !important;
+  padding-right: 0.5rem !important;
 }
 @media (min-width: calc(1000px + 1rem)) {
   .app-width {
-    width: 1000px;
-    padding-left: calc(50% - 500px);
-    padding-right: calc(50% - 500px);
+    width: 1000px !important;
+    padding-left: calc(50% - 500px) !important;
+    padding-right: calc(50% - 500px) !important;
   }
 }
 
