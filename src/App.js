@@ -8,7 +8,7 @@ function App() {
   return (
     <>
       <NavBar/>
-      <ItemListContainer/>
+      <ItemListContainer items={["asd"]}/>
       <CartWidget/>
     </>
   );

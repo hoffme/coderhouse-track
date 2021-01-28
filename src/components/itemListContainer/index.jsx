@@ -1,8 +1,12 @@
 import './style.css';
 
-const ItemListContainer = () => {
+const SinArticulos = () => {
+    return <label>No hay articulos</label>
+}
+
+const ItemListContainer = ({ items }) => {
     return <div className={"item-list-container app-width"}>
-        <label>No se han encontrado articulos</label>
+        {(items && items.length > 0) ? items : <SinArticulos/> }
     </div>;
 }
 

@@ -5,7 +5,7 @@ import logo from '../../assets/logo/logo.png';
 const NavBar = () => {
     return <header className={"app-width"}>
         <a className={"logo"} href={"/"}>
-            <img src={logo}/>
+            <img src={logo} alt="logo trank"/>
         </a>
         <nav>
             <ul>
