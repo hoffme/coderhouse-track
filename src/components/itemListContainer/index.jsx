@@ -1,12 +1,14 @@
 import './style.css';
 
+import { Children } from "react";
+
 const SinArticulos = () => {
     return <label>No hay articulos</label>
 }
 
-const ItemListContainer = ({ items }) => {
+const ItemListContainer = ({ children }) => {
     return <div className={"item-list-container app-width"}>
-        {(items && items.length > 0) ? items : <SinArticulos/> }
+        { Children.count(children) > 0 ? children : <SinArticulos/> }
     </div>;
 }
 
