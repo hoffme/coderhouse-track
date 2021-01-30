@@ -1,4 +1,8 @@
-.item-list-container {
+.item-list-container h2 {
+    margin: 0;
+    padding: 1rem;
+}
+.item-list-container .items-list {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;

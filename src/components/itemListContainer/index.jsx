@@ -1,14 +1,19 @@
 import './style.css';
 
-import { Children } from "react";
+import ItemCount from '../itemCount';
 
-const SinArticulos = () => {
-    return <label>No hay articulos</label>
-}
-
-const ItemListContainer = ({ children }) => {
+const ItemListContainer = ({ title }) => {
+    let itemStock = 4;
+    
     return <div className={"item-list-container app-width"}>
-        { Children.count(children) > 0 ? children : <SinArticulos/> }
+        <h2>{ title }</h2>
+        <div className={"items-list"}>
+            <ItemCount
+            title={"Agregar Articulo"}
+            stock={itemStock}
+            onChange={(newCount) => { console.log(newCount) }}
+            />
+        </div>
     </div>;
 }
 
