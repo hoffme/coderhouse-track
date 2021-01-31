@@ -3,12 +3,12 @@ import './style.css';
 import { useState } from "react"
 
 const ItemCount = ({
-    itemCount = 0,
+    title = "",
     stock = 0,
-    onAdd = () => {},
-    title = "Agregar Articulo"
+    initial = 0,
+    onAdd = () => {}
 }) => {
-    const [count, setCount] = useState(itemCount);
+    const [count, setCount] = useState(initial);
 
     return <div className={"item-count"}>
         <label className={"title"}>{ title }</label>
