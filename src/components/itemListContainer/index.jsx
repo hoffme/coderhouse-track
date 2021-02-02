@@ -3,20 +3,37 @@ import './style.css';
 import ItemList from '../itemList';
 import { useEffect, useState } from 'react';
 
+const getItems = () => {
+    const itemExample = {
+        id: "asd",
+        title: "Fernet 1L",
+        description:"bebida alcohólica amarga del tipo amaro elaborada a partir de varios tipos de hierbas, que son maceradas en alcohol de vino.",
+        price: 500.00,
+        pictureAlt: "beer",
+        pictureUrl: "https://images.vexels.com/media/users/3/129956/isolated/preview/27c9746749f6da553d790fbbac71c986-copa-de-icono-de-bebida-de-cerveza-by-vexels.png"
+    }
+
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve([
+                itemExample, 
+                itemExample, 
+                itemExample, 
+                itemExample
+            ]);
+        }, 2000)
+    })
+}
+
 const ItemListContainer = ({ title }) => {
     const [items, setItems] = useState([]);
 
     useEffect(() => {
-        const loadItems = setTimeout(() => {
-            setItems([
-                { title: "Fernet 1L", initial: 5, stock: 40, price: 500.00, pictureAlt: "beer", pictureUrl: "https://images.vexels.com/media/users/3/129956/isolated/preview/27c9746749f6da553d790fbbac71c986-copa-de-icono-de-bebida-de-cerveza-by-vexels.png" },
-                { title: "Fernet 750", initial: 1, stock: 3, price: 400.00, pictureAlt: "beer", pictureUrl: "https://images.vexels.com/media/users/3/129956/isolated/preview/27c9746749f6da553d790fbbac71c986-copa-de-icono-de-bebida-de-cerveza-by-vexels.png" },
-                { title: "Fernet 500", initial: 0, stock: 0, price: 300.00, pictureAlt: "beer", pictureUrl: "https://images.vexels.com/media/users/3/129956/isolated/preview/27c9746749f6da553d790fbbac71c986-copa-de-icono-de-bebida-de-cerveza-by-vexels.png" },
-                { title: "Fernet 50", initial: 0, stock: 10, price: 200.00, pictureAlt: "beer", pictureUrl: "https://images.vexels.com/media/users/3/129956/isolated/preview/27c9746749f6da553d790fbbac71c986-copa-de-icono-de-bebida-de-cerveza-by-vexels.png" },
-            ])
-        }, 2000)
+        getItems()
+            .then(items => { setItems(items) })
+            .catch(err => alert("Error al obtener los items: " + err))
 
-        return () => { clearInterval(loadItems) }
+        return () => {}
     }, [])
 
     return <div className={"item-list-container app-width"}>

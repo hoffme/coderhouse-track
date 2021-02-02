@@ -9,7 +9,7 @@ const ItemList = ({ items }) => {
                 return <Item
                     key={index}
                     info={itemInfo}
-                    onAdd={newCount => { console.log(newCount) }}
+                    onClick={() => { alert("abrir item: " + itemInfo.title) }}
                 />
             })
         }
