@@ -1,0 +1,11 @@
+.item-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.item-list .item {
+    margin: 0.5rem;
+    width: calc(20% - 1rem);
+}
