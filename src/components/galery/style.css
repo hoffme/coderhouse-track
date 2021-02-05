@@ -1,0 +1,41 @@
+.galery {
+    display: flex;
+    flex-direction: column;
+}
+
+.galery .preview {
+    padding: 0.5rem 0;
+    height: 5rem;
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+    overflow-x: auto;
+}
+.galery .preview button {
+    background-color: transparent;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    height: 5rem;
+    width: 5rem;
+    padding: 0.25rem;
+    margin: 0 0.25rem;
+}
+.galery .preview button:first-child, 
+.galery .preview button:last-child { margin: 0; }
+.galery .preview button img {
+    width: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.galery .showing {
+    height: 50vh;
+    border-radius: 5px;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+}
+.galery .showing img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+}
