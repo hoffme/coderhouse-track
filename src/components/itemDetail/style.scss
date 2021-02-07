@@ -1,15 +1,15 @@
+@import '../../sass/vars';
+
 .item-detail {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
 
     .galery {
         flex: 1;
-        width: 70%;
         margin: 0.5rem;
     }
 
     .info {
-        width: 30%;
         display: flex;
         flex-direction: column;
         margin: 0.5rem;
@@ -28,5 +28,14 @@
             font-size: 0.9em;
             color: #666;
         }
+    }
+}
+
+@media (min-width: $display-mid-min) {
+    .item-detail {
+        flex-direction: row;
+    
+        .galery { width: 70% }
+        .info { width: 30% }
     }
 }
