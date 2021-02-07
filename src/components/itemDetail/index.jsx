@@ -3,7 +3,7 @@ import React from "react";
 import Galery from "../galery";
 import ItemCount from "../itemCount";
 
-import "./style.css";
+import "./style.scss";
 
 const ItemDetail = ({info, onAdd}) => {
     const imagesGalery = [{url:info.pictureUrl, alt: info.pictureAlt}, ...info.galery];

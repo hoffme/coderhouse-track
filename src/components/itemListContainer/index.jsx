@@ -1,4 +1,4 @@
-import './style.css';
+import './style.scss';
 
 import ItemList from '../itemList';
 import { useEffect, useState } from 'react';

@@ -1,0 +1,44 @@
+.item {
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+
+    img {
+        width: 80%;
+        margin: 10%;
+    }
+
+    .title {
+        flex: 1;
+        width: 90%;
+        margin: auto;
+        font-size: 1.25em;
+        text-align: center;
+    }
+
+    .description {
+        flex: 1;
+        width: 90%;
+        margin: 0.5rem auto;
+        text-align: justify;
+        max-height: 2.7rem;
+        overflow: hidden;
+        color: #666;
+        font-size: 0.9em;
+    }
+
+    .price {
+        flex: 1;
+        width: 100%;
+        text-align: center;
+        font-size: 1.5em;
+        background-color: darkorange;
+        color: white;
+        padding: 0.5rem 0;
+        border-radius: 0 0 5px 5px;
+    }
+}
+.item:hover { box-shadow: 1px 1px 5px #ccc }

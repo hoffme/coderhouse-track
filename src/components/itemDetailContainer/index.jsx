@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ItemDetail from "../itemDetail";
 
-import "./style.css";
+import "./style.scss";
 
 const ItemDetailContainer = () => {
     const [info, setInfo] = useState();

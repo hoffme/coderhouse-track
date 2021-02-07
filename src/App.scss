@@ -1,0 +1,15 @@
+@import './sass/vars';
+
+.app-width {
+  width: calc(100% - calc(#{$app-margin} * 2)) !important;
+  padding-left: $app-margin !important;
+  padding-right: $app-margin !important;
+}
+
+@media (min-width: $display-big-min + ($app-margin * 2)) {
+  .app-width {
+    width: $display-big-min !important;
+    padding-left: calc(50% - calc(#{$display-big-min} / 2)) !important;
+    padding-right: calc(50% - calc(#{$display-big-min} / 2)) !important;
+  }
+}

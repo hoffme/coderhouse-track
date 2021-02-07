@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import "./style.css";
+import "./style.scss";
 
 const Galery = ({images = []}) => {
     const [imgShowing, setImgShowing] = useState(images[0]);

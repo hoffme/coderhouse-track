@@ -1,6 +1,6 @@
 import Item from '../item';
 
-import "./style.css";
+import "./style.scss";
 
 const ItemList = ({ items }) => {
     return <div className={"item-list"}>

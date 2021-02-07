@@ -1,4 +1,4 @@
-import './App.css';
+import './App.scss';
 
 import NavBar from './components/navBar';
 import CartWidget from './components/cartWidget';
@@ -9,7 +9,7 @@ function App() {
   return (
     <>
       <NavBar/>
-      {/* <ItemListContainer title={"Listado de Articulos"}/> */}
+      <ItemListContainer title={"Listado de Articulos"}/>
       <ItemDetailContainer />
       <CartWidget/>
     </>

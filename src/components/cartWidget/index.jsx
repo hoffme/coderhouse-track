@@ -1,4 +1,4 @@
-import './style.css';
+import './style.scss';
 
 import icon from '../../assets/icons/cart.svg';
 

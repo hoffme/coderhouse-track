@@ -1,4 +1,4 @@
-import "./style.css";
+import "./style.scss";
 
 const Item = ({ info, onClick }) => {
     return <button className={"item"} onClick={onClick}>
