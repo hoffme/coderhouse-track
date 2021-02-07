@@ -1,7 +1,7 @@
 import './App.scss';
 
 import NavBar from './components/navBar';
-import CartWidget from './components/cartWidget';
+import CartContainer from './components/cartContainer';
 import ItemListContainer from './components/itemListContainer';
 import ItemDetailContainer from './components/itemDetailContainer';
 
@@ -11,7 +11,7 @@ function App() {
       <NavBar/>
       <ItemListContainer title={"Listado de Articulos"}/>
       <ItemDetailContainer />
-      <CartWidget/>
+      <CartContainer />
     </>
   );
 }

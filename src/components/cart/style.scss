@@ -1,0 +1,18 @@
+.cart {
+    margin: 0;
+    padding: 0.5rem;
+    width: calc(100% - 1rem);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 5px 5px 0 0;
+    background-color: white;
+    border: none;
+    box-shadow: 1px 1px 5px #999;
+
+    img {
+        margin: 0.5rem 0 1rem 0;
+        width: 25px;
+        height: 25px;
+    }
+}
