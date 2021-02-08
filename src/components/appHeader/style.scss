@@ -1,12 +1,11 @@
 .app-header {
-    padding: 1rem;
+    padding: 0.25rem;
     text-align: center;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    background-color: darkorange;
+    border-bottom: 1px solid #cccccc50;
 
-    .logo img {
-        height: 4rem;
-    }
+    .logo img { height: 5rem }
 }
+.app-header:hover { box-shadow: 1px 1px 10px #ddd }
