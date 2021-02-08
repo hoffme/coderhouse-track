@@ -1,7 +1,7 @@
 import './style.scss';
 
 const NavBar = () => {
-    return <nav className={"nav-bar"}>
+    return <nav className={"nav-bar app-width"}>
         <ul>
             <li><a href={"/combos"}>Combos</a></li>
             <li><a href={"/cervezas"}>Cerverzas</a></li>

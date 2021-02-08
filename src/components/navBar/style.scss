@@ -1,9 +1,7 @@
 @import '../../sass/vars';
 
 .nav-bar {
-    width: 100%;
-    margin: 1rem;
-    border-radius: 5px;
+    margin: 1rem 0;
     background-color: white;
     font-weight: bold;
 
@@ -21,6 +19,9 @@
             padding: 0;
             text-align: center;
             min-width: 22%;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin: 0.5rem;
             background-color: transparent;
         
             a {
@@ -32,10 +33,13 @@
                 color: black;
             }
         }
+        li:hover {
+            box-shadow: 1px 1px 5px #999;
+            border: 1px solid transparent;
+        }
     }
     ul::-webkit-scrollbar { display: none }
 }
-.nav-bar:hover { box-shadow: 1px 1px 5px #999 }
 
 @media (min-width: $display-mid-min) {
     .nav-bar {
@@ -48,7 +52,7 @@
         }
         ul::-webkit-scrollbar-thumb {
             border-radius: 10px;
-            background-color: rgb(168, 93, 0);
+            background-color: darkorange;
         }
     }
 }
