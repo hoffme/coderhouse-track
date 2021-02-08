@@ -1,58 +1,44 @@
 @import '../../sass/vars';
 
-header {
-    padding: 1rem;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: darkorange;
+.nav-bar {
+    width: 100%;
+    margin: 1rem;
+    border-radius: 5px;
+    background-color: white;
+    font-weight: bold;
 
-    .logo img {
-        width: 4em;
-        height: 4rem;
-    }
+    ul {
+        display: flex;
+        align-items: center;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        flex-direction: row;
+        overflow-y: auto;
 
-    nav {
-        width: 100%;
-        margin: 1rem;
-        border-radius: 5px;
-        background-color: white;
-        font-weight: bold;
-    
-        ul {
-            display: flex;
-            align-items: center;
-            margin: 0;
+        li {
+            flex: 1;
             padding: 0;
-            list-style: none;
-            flex-direction: row;
-            overflow-y: auto;
-
-            li {
-                flex: 1;
-                padding: 0;
-                text-align: center;
-                min-width: 22%;
-                background-color: transparent;
-            
-                a {
-                    text-decoration: none;
-                    display:inline-block;
-                    width: calc(100% - 1rem);
-                    height: calc(100% - 1rem);
-                    padding: 0.5rem;
-                    color: black;
-                }
+            text-align: center;
+            min-width: 22%;
+            background-color: transparent;
+        
+            a {
+                text-decoration: none;
+                display:inline-block;
+                width: calc(100% - 1rem);
+                height: calc(100% - 1rem);
+                padding: 0.5rem;
+                color: black;
             }
         }
-        ul::-webkit-scrollbar { display: none }
     }
-    nav:hover { box-shadow: 1px 1px 5px #999 }
+    ul::-webkit-scrollbar { display: none }
 }
+.nav-bar:hover { box-shadow: 1px 1px 5px #999 }
 
 @media (min-width: $display-mid-min) {
-    header nav {
+    .nav-bar {
         ul::-webkit-scrollbar {
             height: 5px;
             display: block;

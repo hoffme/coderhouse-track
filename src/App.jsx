@@ -1,6 +1,6 @@
 import './App.scss';
 
-import NavBar from './components/navBar';
+import AppHeader from './components/appHeader';
 import CartContainer from './components/cartContainer';
 import ItemListContainer from './components/itemListContainer';
 import ItemDetailContainer from './components/itemDetailContainer';
@@ -8,7 +8,7 @@ import ItemDetailContainer from './components/itemDetailContainer';
 function App() {
   return (
     <>
-      <NavBar/>
+      <AppHeader />
       <ItemListContainer title={"Listado de Articulos"}/>
       <ItemDetailContainer />
       <CartContainer />

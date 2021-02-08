@@ -1,0 +1,12 @@
+.app-header {
+    padding: 1rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: darkorange;
+
+    .logo img {
+        height: 4rem;
+    }
+}
