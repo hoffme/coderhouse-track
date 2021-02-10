@@ -1,40 +1,38 @@
 import './style.scss';
 
-import ItemList from '../itemList';
 import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 
-const getItems = () => {
-    const itemExample = {
-        id: "asd",
-        title: "Fernet 1L",
-        description:"bebida alcohólica amarga del tipo amaro elaborada a partir de varios tipos de hierbas, que son maceradas en alcohol de vino.",
-        price: 500.00,
-        pictureAlt: "beer",
-        pictureUrl: "https://images.vexels.com/media/users/3/129956/isolated/preview/27c9746749f6da553d790fbbac71c986-copa-de-icono-de-bebida-de-cerveza-by-vexels.png"
-    }
+import ItemList from '../itemList';
 
+const getItems = (filter) => {
     return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            resolve([
-                itemExample, 
-                itemExample, 
-                itemExample, 
-                itemExample
-            ]);
-        }, 2000)
-    })
+        // https://www.npoint.io/docs/5d5547aef66f65d0d13c edit
+        fetch("https://api.npoint.io/5d5547aef66f65d0d13c")
+            .then(data => data.json())
+            .then(resolve)
+            .catch(reject);
+    });
 }
 
 const ItemListContainer = ({ title }) => {
     const [items, setItems] = useState([]);
 
+    const { categoryId } = useParams('categoryId');
+    const { query } = useParams('query');
+
     useEffect(() => {
-        getItems()
+        let filter = {};
+   
+        if (categoryId) filter.category = { id: categoryId };
+        if (query) filter.query = query;
+        
+        getItems(filter)
             .then(items => { setItems(items) })
             .catch(err => alert("Error al obtener los items: " + err))
 
         return () => {}
-    }, [])
+    }, [categoryId, query])
 
     return <div className={"item-list-container app-width"}>
         <h2>{ title }</h2>

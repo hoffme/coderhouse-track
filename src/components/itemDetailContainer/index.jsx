@@ -1,43 +1,31 @@
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+
 import ItemDetail from "../itemDetail";
 
 import "./style.scss";
 
+const getItem = (itemId) => {
+    return new Promise((resolve, reject) => {
+        // https://www.npoint.io/docs/5d5547aef66f65d0d13c edit
+        fetch("https://api.npoint.io/5d5547aef66f65d0d13c/" + itemId)
+            .then(data => data.json())
+            .then(resolve)
+            .catch(reject);
+    });
+}
+
 const ItemDetailContainer = () => {
     const [info, setInfo] = useState();
-    
+    const { itemId } = useParams('itemId');
+
     useEffect(() => {
-        new Promise(resolve => {
-            setTimeout(() => {
-                setInfo({
-                    id: "asd",
-                    title: "Fernet 1L",
-                    description:"bebida alcohólica amarga del tipo amaro elaborada a partir de varios tipos de hierbas, que son maceradas en alcohol de vino.",
-                    stock: 59,
-                    discount: 0,
-                    galery: [
-                        {
-                            alt: "beer",
-                            url: "https://www.fullescabio.com/productos/1612465161/01_1612465161.jpg?v=231220"  
-                        },
-                        {
-                            alt: "beer",
-                            url: "https://images.vexels.com/media/users/3/129956/isolated/preview/27c9746749f6da553d790fbbac71c986-copa-de-icono-de-bebida-de-cerveza-by-vexels.png"  
-                        },
-                        {
-                            alt: "beer",
-                            url: "https://images.vexels.com/media/users/3/129956/isolated/preview/27c9746749f6da553d790fbbac71c986-copa-de-icono-de-bebida-de-cerveza-by-vexels.png"  
-                        },
-                    ],
-                    price: 500.00,
-                    pictureAlt: "beer",
-                    pictureUrl: "https://images.vexels.com/media/users/3/129956/isolated/preview/27c9746749f6da553d790fbbac71c986-copa-de-icono-de-bebida-de-cerveza-by-vexels.png"   
-                })
-            }, 2000);
-        })
+        getItem(itemId)
+            .then(info => setInfo(info))
+            .catch(err => console.error(err));
 
         return () => {};
-    }, []);
+    }, [itemId]);
 
     return <div className={"item-detail-container app-width"}>
         {

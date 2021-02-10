@@ -1,0 +1,66 @@
+[
+    {
+        "id": "0",
+        "title": "Quilmes 0 (sin alcohol) 473ml",
+        "description": "-",
+        "stock": 0,
+        "discount": 0,
+        "galery": [
+            {
+                "alt": "beer",
+                "url": "https://www.fullescabio.com/productos/1611934283/01_1611934283.webp?v=231220"  
+            }
+        ],
+        "price": 75.00,
+        "pictureAlt": "beer",
+        "pictureUrl": "https://www.fullescabio.com/productos/1611934283/01_1611934283.webp?v=231220"
+    },
+    {
+        "id": "0",
+        "title": "Andes Origen Miel 473ml",
+        "description": "-",
+        "stock": 1145,
+        "discount": 0,
+        "galery": [
+            {
+                "alt": "beer",
+                "url": "https://www.fullescabio.com/productos/1611934012/01_1611934012.webp?v=231220"  
+            }
+        ],
+        "price": 95.00,
+        "pictureAlt": "beer",
+        "pictureUrl": "https://www.fullescabio.com/productos/1611934012/01_1611934012.webp?v=231220"
+    },
+    {
+        "id": "0",
+        "title": "Bavaria 8.6 Gold 500ml",
+        "description": "-",
+        "stock": 237,
+        "discount": 0,
+        "galery": [
+            {
+                "alt": "beer",
+                "url": "https://www.fullescabio.com/productos/1611670049/01_1611670049.webp?v=231220"  
+            }
+        ],
+        "price": 330.00,
+        "pictureAlt": "beer",
+        "pictureUrl": "https://www.fullescabio.com/productos/1611670049/01_1611670049.webp?v=231220"
+    },
+    {
+        "id": "0",
+        "title": "Bavaria 8.6 Black 500 ml",
+        "description": "-",
+        "stock": 0,
+        "discount": 0,
+        "galery": [
+            {
+                "alt": "beer",
+                "url": "https://www.fullescabio.com/productos/1611669911/01_1611669911.webp?v=231220"  
+            }
+        ],
+        "price": 300.00,
+        "pictureAlt": "beer",
+        "pictureUrl": "https://www.fullescabio.com/productos/1611669911/01_1611669911.webp?v=231220"
+    }
+]

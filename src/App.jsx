@@ -22,10 +22,10 @@ function App() {
         <Route path={"/search/:query"}>
           <ItemListContainer title={"Resultados"} />
         </Route>
-        <Route path={"/category/:id"}>
+        <Route path={"/category/:categoryId"}>
           <ItemListContainer title={"Resultados"} />
         </Route>
-        <Route path={"/item/:id"}>
+        <Route path={"/item/:itemId"}>
           <ItemDetailContainer />
         </Route>
       </Switch>
