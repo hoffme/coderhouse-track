@@ -1,15 +1,18 @@
 import './style.scss';
 
+import { Link } from 'react-router-dom';
+
 import logo from '../../assets/logo/logo.png';
+
 import Search from '../search';
 import CartButton from '../cartButton';
 
 const Header = () => {
     return <header className={"header app-width"}>
         <div className={"left"}>
-            <a className={"logo"} href={"/"}>
+            <Link className={"logo"} to={"/"}>
                 <img src={logo} alt="logo trank"/>
-            </a>
+            </Link>
         </div>
         <div className={"center"}>
             <Search />
