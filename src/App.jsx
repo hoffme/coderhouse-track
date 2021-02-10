@@ -1,19 +1,17 @@
 import './App.scss';
 
-import AppHeader from './components/appHeader';
+import Header from './components/header';
 import NavBar from './components/navBar';
-import CartContainer from './components/cartContainer';
 import ItemListContainer from './components/itemListContainer';
 import ItemDetailContainer from './components/itemDetailContainer';
 
 function App() {
   return (
     <>
-      <AppHeader />
+      <Header />
       <NavBar />
-      <ItemListContainer title={"Listado de Articulos"}/>
+      <ItemListContainer title={"Listado de Articulos"} />
       <ItemDetailContainer />
-      <CartContainer />
     </>
   );
 }

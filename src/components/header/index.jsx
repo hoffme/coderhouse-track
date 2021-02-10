@@ -2,9 +2,10 @@ import './style.scss';
 
 import logo from '../../assets/logo/logo.png';
 import Search from '../search';
+import CartButton from '../cartButton';
 
-const AppHeader = () => {
-    return <header className={"app-header app-width"}>
+const Header = () => {
+    return <header className={"header app-width"}>
         <div className={"left"}>
             <a className={"logo"} href={"/"}>
                 <img src={logo} alt="logo trank"/>
@@ -14,9 +15,9 @@ const AppHeader = () => {
             <Search />
         </div>
         <div className={"right"}>
-
+            <CartButton />
         </div>
     </header>;
 }
 
-export default AppHeader;
+export default Header;
