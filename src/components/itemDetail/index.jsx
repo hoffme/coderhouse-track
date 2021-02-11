@@ -1,20 +1,19 @@
 import React from "react";
 
 import Galery from "../galery";
-import ItemCount from "../itemCount";
+
+import ItemControl from "../itemControl";
 
 import "./style.scss";
 
-const ItemDetail = ({info, onAdd}) => {
-    const imagesGalery = [{url:info.pictureUrl, alt: info.pictureAlt}, ...info.galery];
-
+const ItemDetail = ({info}) => {
     return <div className={"item-detail"}>
-        <Galery images={imagesGalery} />
+        <Galery images={info.galery} />
         <div className={"info"}>
             <h3 className={"title"}>{info.title}</h3>
-            <b className={"price"}>{"$ " + info.price}</b><br/>
+            <b className={"price"}>{"$ " + info.price}</b>
             <label className={"description"}>{info.description}</label>
-            <ItemCount stock={info.stock} initial={1} onAdd={onAdd} />
+            <ItemControl info={info} />
         </div>
     </div>
 }

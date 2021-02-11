@@ -11,7 +11,11 @@ const ItemCount = ({
     const [count, setCount] = useState(initial);
 
     return <div className={"item-count"}>
-        <label className={"title"}>{ title }</label>
+        {
+            (title.length > 0) ?
+                <label className={"title"}>{ title }</label> :
+                null
+        }
 
         <div className={"count-containter"}>
             <button

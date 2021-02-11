@@ -14,8 +14,13 @@
         padding: 0.25rem;
 
         button {
+            flex-grow: 0;
+            flex-shrink: 0;
+            flex-basis: 2rem;
             background-color: transparent;
-            border: none
+            border: none;
+            font-size: 1.75em;
+            padding: 0.1rem;
         }
         
         label {
@@ -29,12 +34,12 @@
         border: none;
         color: white;
         font-size: 1em;
-        padding: 0.5rem 2rem;
+        padding: 1rem 2rem;
         border-radius: 5px;
         box-shadow: 1px 1px 5px #999;
     }
     .button-add-cart:disabled, .button-add-cart[disabled] {
-      background-color: #e6e6e6;
-      color: #a0a0a0;
+        background-color: #e6e6e6;
+        color: #a0a0a0;
     }
 }
