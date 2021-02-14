@@ -16,10 +16,10 @@ function App() {
           <NavBar />
           <ItemListContainer title={"Novedades"} />
         </Route>
-        <Route path={"/search/"}>
+        <Route path={"/search/:query"}>
           <ItemListContainer title={"Resultados"} />
         </Route>
-        <Route path={"/search/:query"}>
+        <Route path={"/search/"}>
           <ItemListContainer title={"Resultados"} />
         </Route>
         <Route path={"/category/:categoryId"}>

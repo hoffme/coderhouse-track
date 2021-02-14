@@ -12,7 +12,7 @@ const getItems = (filter) => {
             .then(data => data.json())
             .then(items => {
                 resolve(items.filter(item => {
-                    if (filter.query && !item.name.toLowerCase().includes(filter.query.toLowerCase())) return false;
+                    if (filter.query && !item.title.toLowerCase().includes(filter.query.toLowerCase())) return false;
                     if (filter.category && item.category !== filter.category.id) return false;
                     return true;
                 }))
@@ -21,7 +21,7 @@ const getItems = (filter) => {
     });
 }
 
-const ItemListContainer = ({ title }) => {
+const ItemListContainer = ({ title, match }) => {
     const [items, setItems] = useState([]);
 
     const { categoryId } = useParams('categoryId');
