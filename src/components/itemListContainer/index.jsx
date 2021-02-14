@@ -10,7 +10,13 @@ const getItems = (filter) => {
         // https://www.npoint.io/docs/5d5547aef66f65d0d13c edit
         fetch("https://api.npoint.io/5d5547aef66f65d0d13c")
             .then(data => data.json())
-            .then(resolve)
+            .then(items => {
+                resolve(items.filter(item => {
+                    if (filter.query && !item.name.toLowerCase().includes(filter.query.toLowerCase())) return false;
+                    if (filter.category && item.category !== filter.category.id) return false;
+                    return true;
+                }))
+            })
             .catch(reject);
     });
 }
