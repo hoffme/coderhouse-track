@@ -6,7 +6,7 @@ import CartContext from '../../contexts/cart';
 import { Link } from 'react-router-dom';
 
 const Cart = () => {
-    const {cart, isEmpty, removeItem, clearItems} = useContext(CartContext);
+    const {cart, isEmpty, removeItem} = useContext(CartContext);
 
     if (isEmpty()) return <div className={"cart"}>No hay items seleccionados</div>;
 

@@ -30,6 +30,8 @@ const CartProvider = ({ cart = defaultCart, children }) => {
 
     const itemInCart = (itemID) => itemID in items;
 
+    const getItem = (itemID) => items[itemID];
+
     const isEmpty = () => Object.keys(items).length === 0;
 
     return <CartContext.Provider value={{
@@ -38,6 +40,7 @@ const CartProvider = ({ cart = defaultCart, children }) => {
         removeItem,
         clearItems,
         itemInCart,
+        getItem,
         isEmpty
     }}>
         {children}

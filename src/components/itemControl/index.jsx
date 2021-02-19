@@ -9,17 +9,19 @@ import ItemCount from '../itemCount';
 import ItemOutStock from '../itemOutStock';
 
 const ItemControl = ({info}) => {
-    const {addItem, itemInCart} = useContext(CartContext);
+    const {addItem, removeItem, getItem, itemInCart} = useContext(CartContext);
 
     if (info.stock === 0) return <ItemOutStock />;
 
-    if (itemInCart(info.id)) return <FinishPurchaseButton />;
-
-    return <ItemCount
-        stock={info.stock}
-        count={info.count}
-        onAdd={count => addItem(info, count)}
-    />;
+    return <>
+        <ItemCount
+            stock={info.stock}
+            count={itemInCart(info.id) ? getItem(info.id).quantity : 0}
+            onAdd={count => addItem(info, count)}
+            onRemove={count => removeItem(info.id, count)}
+        />
+        <FinishPurchaseButton />
+    </>;
 }
 
 export default ItemControl;

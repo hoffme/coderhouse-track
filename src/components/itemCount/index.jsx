@@ -1,16 +1,13 @@
 import './style.scss';
 
-import { useState } from "react"
-
 const ItemCount = ({
     title = "",
     stock = 0,
-    initial = 0,
-    onAdd = () => {}
+    count = 0,
+    onAdd = () => {},
+    onRemove = () => {}
 }) => {
-    const [count, setCount] = useState(initial);
-
-    return <div className={"item-count"}>
+    return <div className={"item-count " + (count > 0 ? "" : "not-added-cart")}>
         {
             (title.length > 0) ?
                 <label className={"title"}>{ title }</label> :
@@ -20,22 +17,14 @@ const ItemCount = ({
         <div className={"count-containter"}>
             <button
                 disabled={count <= 0}
-                onClick={() => { setCount(count - 1) }}
+                onClick={() => onRemove(1)}
             >-</button>
             <label>{ count }</label>
             <button
                 disabled={count >= stock}
-                onClick={() => { setCount(count + 1) }}
+                onClick={() => onAdd(1)}
             >+</button>
         </div>
-        
-        <button
-            disabled={count === 0}
-            className={"button-add-cart"}
-            onClick={() => onAdd(count)}
-        >
-            Agregar al carrito
-        </button>
     </div>
 }
 
