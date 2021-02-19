@@ -1,9 +1,54 @@
 .cart {
     position: absolute;
-    transform: translate(0%, 100%);
-
+    transform: translate(0%, 3rem);
     background: white;
     border-radius: 5px;
     padding: 1rem;
     box-shadow: 1px 1px 5px #999;
+    background-color: white;
+    z-index: 2;
+
+    .items-cart {
+        display: flex;
+        flex-direction: column;
+
+        .item-cart {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            padding: 0.5rem 0;
+
+            > * {
+                padding: 0 0.5rem;
+            }
+
+            .title { flex: 1 }
+            .title, .price { text-align: left }
+            button {
+                width: 25px;
+                height: 25px;
+                padding: 0;
+                background-color: transparent;
+                border-radius: 5px;
+                border: 1px solid #999;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+    }
+
+    .finish-button {
+        display: block;
+        box-sizing: border-box;
+        text-decoration: none;
+        color: white;
+        font-weight: bold;
+        background-color: darkorange;
+        box-shadow: 1px 1px 3px #ccc;
+        border-radius: 5px;
+        width: 100%;
+        padding: 0.5rem;
+        margin-top: 1rem;
+    }
 }

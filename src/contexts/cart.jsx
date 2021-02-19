@@ -1,11 +1,11 @@
 import { createContext, useState } from 'react';
 
-const defaultCart = { items: {} };
+const defaultCart = { items: [] };
 
 const CartContext = createContext();
 
 const CartProvider = ({ cart = defaultCart, children }) => {
-    const [items, setItems] = useState(cart.items);
+    const [items, setItems] = useState(cart.items.reduce((items, item) => items[item.item.id] = item, {}));
 
     const addItem = (item, quantity) => {
         const newItems = {...items};
@@ -30,12 +30,15 @@ const CartProvider = ({ cart = defaultCart, children }) => {
 
     const itemInCart = (itemID) => itemID in items;
 
+    const isEmpty = () => Object.keys(items).length === 0;
+
     return <CartContext.Provider value={{
-        cart: { items: items },
+        cart: { items: Object.values(items) },
         addItem,
         removeItem,
         clearItems,
-        itemInCart
+        itemInCart,
+        isEmpty
     }}>
         {children}
     </CartContext.Provider>
