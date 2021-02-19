@@ -2,6 +2,20 @@
     background: transparent;
     border: none;
     padding: 0;
+    position: relative;
 
     img { width: 1.5rem }
+
+    .total-count {
+        position: absolute;
+        width: 1.5rem;
+        height: 1.5rem;
+        display: flex;
+        padding: 0;
+        justify-content: center;
+        align-items: center;
+        transform: translate(10%, -80%);
+        color: darkorange;
+        font-weight: bold;
+    }
 }

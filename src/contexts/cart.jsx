@@ -48,6 +48,10 @@ const CartProvider = ({ cart = defaultCart, children }) => {
         return amounts;
     }
 
+    const totalCount = () => {
+        return Object.values(items).reduce((total, item) => item.quantity, 0);
+    }
+
     return <CartContext.Provider value={{
         cart: { items: Object.values(items) },
         addItem,
@@ -56,6 +60,7 @@ const CartProvider = ({ cart = defaultCart, children }) => {
         itemInCart,
         getItem,
         amounts: amounts(),
+        totalCount: totalCount(),
         isEmpty
     }}>
         {children}
