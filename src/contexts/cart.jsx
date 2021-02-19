@@ -5,7 +5,9 @@ const defaultCart = { items: [] };
 const CartContext = createContext();
 
 const CartProvider = ({ cart = defaultCart, children }) => {
-    const [items, setItems] = useState(cart.items.reduce((items, item) => items[item.item.id] = item, {}));
+    const [items, setItems] = useState(cart.items.reduce((items, item) => {
+        return items[item.item.id] = item;
+    }, {}));
 
     const addItem = (item, quantity) => {
         const newItems = {...items};
@@ -34,6 +36,18 @@ const CartProvider = ({ cart = defaultCart, children }) => {
 
     const isEmpty = () => Object.keys(items).length === 0;
 
+    const amounts = () => {
+        const amounts = {};
+
+        amounts.amount = Object.values(items).reduce((total, item) => {
+            return total += (item.item.price * item.quantity);
+        }, 0);
+        amounts.discount = 0;
+        amounts.total = amounts.amount - amounts.discount;
+
+        return amounts;
+    }
+
     return <CartContext.Provider value={{
         cart: { items: Object.values(items) },
         addItem,
@@ -41,6 +55,7 @@ const CartProvider = ({ cart = defaultCart, children }) => {
         clearItems,
         itemInCart,
         getItem,
+        amounts: amounts(),
         isEmpty
     }}>
         {children}

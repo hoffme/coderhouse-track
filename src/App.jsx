@@ -8,6 +8,7 @@ import Header from './components/header';
 import NavBar from './components/navBar';
 import ItemListContainer from './components/itemListContainer';
 import ItemDetailContainer from './components/itemDetailContainer';
+import CartContainer from './components/cartContainer';
 
 function App() {
   return (
@@ -30,6 +31,9 @@ function App() {
           </Route>
           <Route path={"/item/:itemId"}>
             <ItemDetailContainer />
+          </Route>
+          <Route path={"/cart/"}>
+            <CartContainer />
           </Route>
         </Switch>
       </BrowserRouter>

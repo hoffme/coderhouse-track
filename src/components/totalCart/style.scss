@@ -1,0 +1,37 @@
+.total-cart {
+    display: flex;
+    flex-direction: row;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding: 0.75rem;
+
+    .field-money {
+        margin: 0 1rem;
+        padding: 1rem 0;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    
+        label {
+            position: absolute;
+            top: 0;
+            left: 0;
+            font-size: 0.7em;
+        }
+
+        b { text-align: center }
+    }
+
+    > * { flex: 3 }
+
+    :last-child {
+        flex: 4;
+        font-size: 1.3em;
+
+        b {
+            color: darkorange;
+            font-weight: bold;
+        }
+    }
+}
