@@ -1,36 +1,24 @@
 import './style.scss';
 
-import { useState } from "react";
+import { useContext } from "react";
+
+import CartContext from '../../contexts/cart';
 
 import FinishPurchaseButton from '../finishPurchaseButton';
 import ItemCount from '../itemCount';
 import ItemOutStock from '../itemOutStock';
 
-const onAddEvent = (info, count) => {
-    return new Promise(resolve => {
-        setTimeout(() => resolve(), 500);
-    });
-}
-
 const ItemControl = ({info}) => {
-    const [added, setAdded] = useState(info.count > 0);
+    const {addItem, itemInCart} = useContext(CartContext);
 
-    if (info.stock === 0) {
-        return <ItemOutStock />;
-    }
+    if (info.stock === 0) return <ItemOutStock />;
 
-    if (added) {
-        return <FinishPurchaseButton />;
-    }
+    if (itemInCart(info.id)) return <FinishPurchaseButton />;
 
     return <ItemCount
         stock={info.stock}
         count={info.count}
-        onAdd={count => {
-            onAddEvent(info, count)
-                .then(() => setAdded(true))
-                .catch(err => console.error(err));    
-        }}
+        onAdd={count => addItem(info, count)}
     />;
 }
 

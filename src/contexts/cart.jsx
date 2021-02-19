@@ -1,41 +1,45 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useState } from 'react';
 
 const defaultCart = { items: {} };
 
 const CartContext = createContext();
 
-const useCartContext = () => useContext(CartContext);
-
 const CartProvider = ({ cart = defaultCart, children }) => {
-    const { items, setItems } = useState(cart.items);
+    const [items, setItems] = useState(cart.items);
 
     const addItem = (item, quantity) => {
-        if (!items[item.id]) items[item.id] = { item: item, quantity: 0 }; 
-        items[item.id].quantity += quantity;
+        const newItems = {...items};
+
+        if (!newItems[item.id]) newItems[item.id] = { item: item, quantity: 0 }; 
+        newItems[item.id].quantity += quantity;
         
-        setItems(items);
+        setItems(newItems);
     }
 
-    const removeItem = (itemId, quantity) => {
-        if (!items[itemId]) return;
-        if (quantity) items[itemId].quantity -= quantity;
-        if (!quantity || items[itemId].quantity <= 0) delete items[itemId];
+    const removeItem = (itemId, quantity = null) => {
+        const newItems = {...items};
+
+        if (!newItems[itemId]) return;
+        if (quantity) newItems[itemId].quantity -= quantity;
+        if (!quantity || newItems[itemId].quantity <= 0) delete newItems[itemId];
     
-        setItems(items);
+        setItems(newItems);
     }
 
-    const clearItems = () => {
-        items = {};
+    const clearItems = () => setItems({});
 
-        setItems(items);
-    }
+    const itemInCart = (itemID) => itemID in items;
 
-    const itemInCart = (itemID) => items[itemID] !== undefined;
-
-    return <CartContext.Provider value={{ cart, addItem, removeItem, clearItems, itemInCart }}>
+    return <CartContext.Provider value={{
+        cart: { items: items },
+        addItem,
+        removeItem,
+        clearItems,
+        itemInCart
+    }}>
         {children}
     </CartContext.Provider>
 }
 
 export default CartContext;
-export { CartProvider, useCartContext };
+export { CartProvider };
