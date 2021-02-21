@@ -7,12 +7,13 @@ import ListItem from '../listItems';
 import TotalCart from '../totalCart';
 
 const CartContainer = () => {
-    const {cart, removeItem, amounts} = useContext(CartContext);
+    const {cart, addItem, removeItem, amounts} = useContext(CartContext);
 
     return <div className={"cart app-width"}>
         <ListItem
             items={cart.items}
             onRemoveItem={removeItem}
+            onAddItem={addItem}
         />
         <TotalCart
             amount={amounts.amount}

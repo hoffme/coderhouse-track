@@ -16,14 +16,35 @@
 
         > * { padding: 0 0.5rem }
 
-        .quantity {
-            flex: 1;
-            text-align: center;
+        .count {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            border-radius: 5px;
+            padding: 0;
+
+            label {
+                text-align: center;
+                width: 35px;
+            }
+
+            button {
+                background-color: darkorange;
+                color: white;
+                font-weight: bold;
+                border: none;
+                width: 25px;
+                height: 25px;
+            }
+
+            :first-child { border-radius: 5px 0 0 5px}
+            :last-child { border-radius: 0 5px 5px 0}
         }
         .title { flex: 10 }
         .price { flex: 4 }
         .title, .price { text-align: left }
-        button {
+        .button-remove {
             width: 25px;
             height: 25px;
             padding: 0;
