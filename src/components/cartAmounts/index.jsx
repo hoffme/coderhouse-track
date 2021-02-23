@@ -1,20 +1,20 @@
 import './style.scss';
 
-const TotalCart = ({amount = 0, discount = 0, total = 0}) => {
-    return <div className={"total-cart"}>
+const CartAmounts = ({amounts}) => {
+    return <div className={"cart-amounts"}>
         <div className={"field-money"}>
             <label>Importe</label>
-            <b>$ {amount}</b>
+            <b>$ {amounts.amount}</b>
         </div>
         <div className={"field-money"}>
             <label>Descuento</label>
-            <b>-$ {discount}</b>
+            <b>-$ {amounts.discount}</b>
         </div>
         <div className={"field-money"}>
             <label>Total</label>
-            <b>$ {total}</b>
+            <b>$ {amounts.total}</b>
         </div>
     </div>   
 }
 
-export default TotalCart;
+export default CartAmounts;

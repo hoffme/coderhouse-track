@@ -4,7 +4,7 @@ import { useContext } from "react";
 
 import CartContext from '../../contexts/cart';
 import ListItem from '../listItems';
-import TotalCart from '../totalCart';
+import CartAmounts from '../cartAmounts';
 
 const CartContainer = () => {
     const {cart, addItem, removeItem, amounts} = useContext(CartContext);
@@ -15,11 +15,7 @@ const CartContainer = () => {
             onRemoveItem={removeItem}
             onAddItem={addItem}
         />
-        <TotalCart
-            amount={amounts.amount}
-            discount={amounts.discount}
-            total={amounts.total}
-        />
+        <CartAmounts amounts={amounts} />
     </div>;
 }
 
