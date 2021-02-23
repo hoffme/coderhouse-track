@@ -2,8 +2,8 @@ import './style.scss';
 
 import ProductDetailContainer from '../../components/product/detailContainer';
 
-const ProductDetailPage = () => {
+const ProductPage = () => {
     return <ProductDetailContainer />;
 }
 
-export default ProductDetailPage;
+export default ProductPage;
