@@ -1,56 +1,35 @@
 import './style.scss';
 
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
 
 import ProductList from '../productList';
+import productsFilter from './filter';
 
-const getProduct = (filter) => {
-    return new Promise((resolve, reject) => {
-        // https://www.npoint.io/docs/5d5547aef66f65d0d13c edit
-        fetch("https://api.npoint.io/5d5547aef66f65d0d13c")
-            .then(data => data.json())
-            .then(products => {
-                resolve(products.filter(product => {
-                    if (
-                        filter.query && 
-                        !product.title.toLowerCase().includes(filter.query.toLowerCase())
-                        ) {
-                        return false;        
-                    }
-                    
-                    if (
-                        filter.category && 
-                        product.category !== filter.category.id
-                    ) {
-                        return false;
-                    }
-
-                    return true;
-                }))
-            })
-            .catch(reject);
-    });
-}
-
-const ProductListContainer = ({ title }) => {
+const ProductListContainer = ({ title, filters = {}}) => {
     const [products, setProducts] = useState([]);
 
-    const { categoryId } = useParams('categoryId');
-    const { query } = useParams('query');
+    // hay que guardar el filtro en un estado para que no entre
+    // en bucle cunado se le pasa el prop al useEffect
+    // eslint-disable-next-line
+    const [filter, _] = useState(filters);
 
-    useEffect(() => {
-        let filter = {};
-   
-        if (categoryId) filter.category = { id: categoryId };
-        if (query) filter.query = query;
-        
-        getProduct(filter)
+    const getProducts = (filter) => {
+        return new Promise((resolve, reject) => {
+            // https://www.npoint.io/docs/5d5547aef66f65d0d13c edit
+            fetch("https://api.npoint.io/5d5547aef66f65d0d13c")
+                .then(data => data.json())
+                .then(products => resolve(productsFilter(products, filter)))
+                .catch(reject);
+        });
+    }
+
+    useEffect(() => {        
+        getProducts(filter)
             .then(products => { setProducts(products) })
-            .catch(err => alert("Error al obtener los productos: " + err))
+            .catch(err => console.error("Error al obtener los productos: " + err))
 
         return () => {}
-    }, [categoryId, query])
+    }, [filter])
 
     return <div className={"product-list-container app-width"}>
         <h2>{ title }</h2>
