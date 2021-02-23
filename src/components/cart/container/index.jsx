@@ -2,9 +2,9 @@ import './style.scss';
 
 import { useContext } from "react";
 
-import CartContext from '../../contexts/cart';
-import CartAmounts from '../cartAmounts';
-import ItemList from '../itemList';
+import CartContext from '../../../contexts/cart';
+import CartAmounts from '../amounts';
+import ItemList from '../../item/list';
 
 const CartContainer = () => {
     const {cart, addItem, removeItem, amounts} = useContext(CartContext);

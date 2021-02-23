@@ -3,7 +3,7 @@ import './style.scss';
 import { useContext, useState } from "react";
 import { useHistory } from 'react-router-dom';
 
-import CartContext from '../../contexts/cart';
+import CartContext from '../../../contexts/cart';
 
 const ProductControl = ({product}) => {
     const {addItem} = useContext(CartContext);

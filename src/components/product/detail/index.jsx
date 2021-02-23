@@ -1,8 +1,8 @@
 import React from "react";
 
-import Galery from "../galery";
+import Galery from "../../galery";
 
-import ProductControl from "../productControl";
+import ProductControl from "../control";
 
 import "./style.scss";
 

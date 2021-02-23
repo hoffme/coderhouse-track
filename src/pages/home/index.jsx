@@ -1,7 +1,7 @@
 import './style.scss';
 
 import NavBar from '../../components/navBar';
-import ProductListContainer from '../../components/productListContainer';
+import ProductListContainer from '../../components/product/listContainer';
 
 const HomePage = () => {
     return <>

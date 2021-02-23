@@ -3,9 +3,9 @@ import './style.scss';
 import { Link } from 'react-router-dom';
 import { useContext } from "react";
 
-import CartContext from '../../contexts/cart';
+import CartContext from '../../../contexts/cart';
 
-import cartIcon from '../../assets/icons/cart.svg';
+import cartIcon from '../../../assets/icons/cart.svg';
 
 const CartButton = () => {
     const {totalCount} = useContext(CartContext);

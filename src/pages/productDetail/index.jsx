@@ -1,6 +1,6 @@
 import './style.scss';
 
-import ProductDetailContainer from '../../components/productDetailContainer';
+import ProductDetailContainer from '../../components/product/detailContainer';
 
 const ProductDetailPage = () => {
     return <ProductDetailContainer />;

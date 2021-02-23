@@ -2,7 +2,7 @@ import './style.scss';
 
 import { useParams } from 'react-router-dom';
 
-import ProductListContainer from '../../components/productListContainer';
+import ProductListContainer from '../../components/product/listContainer';
 
 const SearchPage = () => {
     const { categoryId } = useParams('categoryId');

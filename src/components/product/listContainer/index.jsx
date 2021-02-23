@@ -2,7 +2,7 @@ import './style.scss';
 
 import { useEffect, useState } from 'react';
 
-import ProductList from '../productList';
+import ProductList from '../list';
 import productsFilter from './filter';
 
 const ProductListContainer = ({ title, filters = {}}) => {

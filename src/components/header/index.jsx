@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import logo from '../../assets/logo/logo.png';
 
 import Search from '../search';
-import CartButton from '../cartButton';
+import CartButton from '../cart/button';
 
 const Header = () => {
     return <header className={"header app-width"}>

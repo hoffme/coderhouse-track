@@ -1,6 +1,6 @@
 import './style.scss';
 
-import ItemRow from '../itemRow';
+import ItemRow from '../row';
 import { Link } from 'react-router-dom';
 
 const ItemList = ({items, onRemoveItem, onAddItem}) => {
