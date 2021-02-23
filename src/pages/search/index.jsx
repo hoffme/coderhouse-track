@@ -1,9 +1,9 @@
 import './style.scss';
 
-import ItemListContainer from '../../components/itemListContainer';
+import ProductListContainer from '../../components/productListContainer';
 
 const SearchPage = () => {
-    return <ItemListContainer title={"Resultados"} />;
+    return <ProductListContainer title={"Resultados"} />;
 }
 
 export default SearchPage;

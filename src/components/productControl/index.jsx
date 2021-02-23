@@ -5,12 +5,12 @@ import { useHistory } from 'react-router-dom';
 
 import CartContext from '../../contexts/cart';
 
-const ItemControl = ({info}) => {
+const ProductControl = ({product}) => {
     const {addItem} = useContext(CartContext);
     const [count, setCount] = useState(0);
     const history = useHistory();
 
-    if (info.stock === 0) {
+    if (product.stock === 0) {
         return <div className={"item-out-stock"}>Sin Stock</div>;
     }
 
@@ -19,25 +19,25 @@ const ItemControl = ({info}) => {
             <label className={"title-quantity"}>Cantidad: </label>
             <select onChange={e => setCount(parseInt(e.currentTarget.value))} value={count}>
                 {
-                    Array.from(Array(Math.min(info.stock, 10))).map((_, i) => {
+                    Array.from(Array(Math.min(product.stock, 10))).map((_, i) => {
                         return <option key={i} value={i}>{i}</option>
                     })
                 }
             </select>
-            <label className={"text-available"}>({info.stock} disponibles)</label>
+            <label className={"text-available"}>({product.stock} disponibles)</label>
         </div>
         <button
             className={"button-add-to-cart"}
-            onClick={() => addItem(info, count)}
+            onClick={() => addItem(product, count)}
         >Agregar al Carrito</button>
         <button
             className={"button-buy-now"}
             onClick={() => {
-                addItem(info, count);
+                addItem(product, count);
                 history.push('/cart');
             }}
         >Comprar Ya</button>
     </>;
 }
 
-export default ItemControl;
+export default ProductControl;

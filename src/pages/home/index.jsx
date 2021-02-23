@@ -1,12 +1,12 @@
 import './style.scss';
 
 import NavBar from '../../components/navBar';
-import ItemListContainer from '../../components/itemListContainer';
+import ProductListContainer from '../../components/productListContainer';
 
 const HomePage = () => {
     return <>
         <NavBar />
-        <ItemListContainer title={"Novedades"} />
+        <ProductListContainer title={"Novedades"} />
     </>
 }
 

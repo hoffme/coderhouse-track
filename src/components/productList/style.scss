@@ -1,21 +1,21 @@
 @import '../../sass/vars';
 
-.item-list {
+.product-list {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
 
-    .item {
+    .product-card {
         margin: 0.5rem;
         width: calc(100% - 1rem);
     }
 }
 
 @media (min-width: $display-mid-min) {
-    .item-list .item { width: calc(33% - 1rem) }
+    .product-list .product-card { width: calc(33% - 1rem) }
 }
 
 @media (min-width: $display-big-min) {
-    .item-list .item { width: calc(25% - 1.25rem) }
+    .product-list .product-card { width: calc(25% - 1.25rem) }
 }

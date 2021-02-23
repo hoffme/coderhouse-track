@@ -7,7 +7,7 @@ import { CartProvider } from './contexts/cart';
 import Header from './components/header';
 import HomePage from './pages/home';
 import SearchPage from './pages/search';
-import ItemDetailPage from './pages/itemDetail';
+import ProductDetailPage from './pages/productDetail';
 import CartPage from './pages/cart';
 
 function App() {
@@ -20,7 +20,7 @@ function App() {
           <Route path={"/search/:query"} component={SearchPage} />
           <Route path={"/search/"} component={SearchPage} />
           <Route path={"/category/:categoryId"} component={SearchPage} />
-          <Route path={"/item/:itemId"} component={ItemDetailPage} />
+          <Route path={"/product/:productId"} component={ProductDetailPage} />
           <Route path={"/cart/"} component={CartPage} />
         </Switch>
       </BrowserRouter>
