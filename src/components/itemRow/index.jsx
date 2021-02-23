@@ -1,7 +1,7 @@
 import './style.scss';
 
-const Item = ({item, onRemoveItem, onAddItem}) => {
-    return <div className={"item-list"}>
+const ItemRow = ({item, onRemoveItem, onAddItem}) => {
+    return <div className={"item-row"}>
         <div className={"count"}>
             <button onClick={() => onRemoveItem(item.item.id, 1)}>-</button>
             <label>{item.quantity}</label>
@@ -13,4 +13,4 @@ const Item = ({item, onRemoveItem, onAddItem}) => {
     </div>;
 }
 
-export default Item;
+export default ItemRow;

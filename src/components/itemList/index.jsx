@@ -1,17 +1,17 @@
 import './style.scss';
 
-import Item from '../item';
+import ItemRow from '../itemRow';
 import { Link } from 'react-router-dom';
 
-const ListItems = ({items, onRemoveItem, onAddItem}) => {
-    return <div className={"list-items"}>{
+const ItemList = ({items, onRemoveItem, onAddItem}) => {
+    return <div className={"item-list"}>{
         items.length === 0 ?
             <label className={"without-items"}>
                 No hay items en el carrito <br></br><Link to={"/"}>Volver</Link>
             </label>
             :
             items.map((item, index) => {
-                return <Item
+                return <ItemRow
                     item={item}
                     key={index}
                     onAddItem={onAddItem}
@@ -21,4 +21,4 @@ const ListItems = ({items, onRemoveItem, onAddItem}) => {
     }</div>;
 }
 
-export default ListItems;
+export default ItemList;
