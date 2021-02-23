@@ -6,7 +6,7 @@ import { useHistory } from 'react-router-dom';
 import CartContext from '../../../contexts/cart';
 
 const ProductControl = ({product}) => {
-    const {addItem} = useContext(CartContext);
+    const {addItem, availableItem, quantityItem} = useContext(CartContext);
     const [count, setCount] = useState(0);
     const history = useHistory();
 
@@ -17,14 +17,18 @@ const ProductControl = ({product}) => {
     return <>
         <div className={"count-container"}>
             <label className={"title-quantity"}>Cantidad: </label>
-            <select onChange={e => setCount(parseInt(e.currentTarget.value))} value={count}>
+            <select onChange={e => setCount(parseInt(e.currentTarget.value))} value={count}>{
+                Array.from(Array(availableItem(product) + 1)).map((_, i) => {
+                    return <option key={i} value={i}>{i}</option>
+                })
+            }</select>
+            <div className={"text-available"}>
+                <label >({product.stock} disponibles)</label>
                 {
-                    Array.from(Array(Math.min(product.stock, 10))).map((_, i) => {
-                        return <option key={i} value={i}>{i}</option>
-                    })
+                    quantityItem(product.id) > 0 &&
+                    <label>({quantityItem(product.id)} en carrito)</label>
                 }
-            </select>
-            <label className={"text-available"}>({product.stock} disponibles)</label>
+            </div>
         </div>
         <button
             className={"button-add-to-cart"}
