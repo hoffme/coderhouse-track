@@ -5,10 +5,10 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { CartProvider } from './contexts/cart';
 
 import Header from './components/header';
-import NavBar from './components/navBar';
-import ItemListContainer from './components/itemListContainer';
-import ItemDetailContainer from './components/itemDetailContainer';
-import CartContainer from './components/cartContainer';
+import HomePage from './pages/home';
+import SearchPage from './pages/search';
+import ItemDetailPage from './pages/itemDetail';
+import CartPage from './pages/cart';
 
 function App() {
   return (
@@ -16,25 +16,12 @@ function App() {
       <BrowserRouter>
         <Header />
         <Switch>
-          <Route exact path={"/"}>
-            <NavBar />
-            <ItemListContainer title={"Novedades"} />
-          </Route>
-          <Route path={"/search/:query"}>
-            <ItemListContainer title={"Resultados"} />
-          </Route>
-          <Route path={"/search/"}>
-            <ItemListContainer title={"Resultados"} />
-          </Route>
-          <Route path={"/category/:categoryId"}>
-            <ItemListContainer title={"Resultados"} />
-          </Route>
-          <Route path={"/item/:itemId"}>
-            <ItemDetailContainer />
-          </Route>
-          <Route path={"/cart/"}>
-            <CartContainer />
-          </Route>
+          <Route exact path={"/"} component={HomePage} />
+          <Route path={"/search/:query"} component={SearchPage} />
+          <Route path={"/search/"} component={SearchPage} />
+          <Route path={"/category/:categoryId"} component={SearchPage} />
+          <Route path={"/item/:itemId"} component={ItemDetailPage} />
+          <Route path={"/cart/"} component={CartPage} />
         </Switch>
       </BrowserRouter>
     </CartProvider>
