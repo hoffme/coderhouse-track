@@ -54,7 +54,7 @@ const CartProvider = ({ cart = defaultCart, children }) => {
     }
 
     const totalCount = () => {
-        return Object.values(items).reduce((total, item) => item.quantity, 0);
+        return Object.values(items).reduce((total, item) => total + item.quantity, 0);
     }
 
     const availableItem = (product) => Math.min(product.stock - quantityItem(product.id), 10);
