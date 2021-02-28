@@ -10,8 +10,6 @@ const ProductControl = ({product}) => {
     const [count, setCount] = useState(0);
     const history = useHistory();
 
-    console.log(quantityItem(product.id), product)
-
     if (product.stock === 0) {
         return <div className={"item-out-stock"}>Sin Stock</div>;
     }

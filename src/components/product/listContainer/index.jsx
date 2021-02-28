@@ -12,12 +12,12 @@ const ProductListContainer = ({ title, filters = {}}) => {
     const [filter] = useState(filters);
 
     const getProducts = async (filter) => {
-        const query = getFirestore()
+        let query = getFirestore()
             .collection('products')
             .where("show", "!=", false);
         
-        if (filter.query) query.where("title", "==", filter.query);
-        if (filter.category) query.where("category", "==", filter.category.id);
+        if (filter.query) query = query.where("title", "==", filter.query);
+        if (filter.category) query = query.where("category", "==", filter.category.id);
 
         const snapshot = await query.get();
 
