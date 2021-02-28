@@ -9,40 +9,36 @@ import "./style.scss";
 
 const ProductDetailContainer = () => {
     const { productUrl } = useParams('productUrl');
-
-    const db = getFirestore();
-    const productsCollection = db.collection('products');
-    
-    let productsQuery = productsCollection
-        .where("show", "!=", false)
-        .where("url", "==", productUrl)
-        .limit(1);
-
-    // hay que guardar los siguientes parametros en un estado para que no entre
-    // en bucle cuando se actualiza el componente. (refactor)
-
-    // eslint-disable-next-line
-    const [query, _] = useState(productsQuery);
-    // eslint-disable-next-line
-    const [collection, __] = useState(productsCollection);
-
     const [product, setProduct] = useState();
 
-    useEffect(() => {
-        collection.get(query)
-            .then(querySnapshot => {
-                const products = querySnapshot.docs.map(doc => doc.data());
-                if (products.length === 0) {
-                    throw new Error("no se ha encontrado el producto");
-                }
+    const getProduct = async (url) => {
+        const snapshot = await getFirestore()
+            .collection('products')
+            .where("show", "!=", false)
+            .where("url", "==", url)
+            .limit(1)
+            .get();
+        
+        const products = snapshot.docs.map(doc => {
+            return { id: doc.id, ...doc.data() }
+        });
 
-                setProduct(products[0]);
-            }).catch(err => {
+        if (products.length === 0) {
+            throw new Error("no se ha encontrado el producto");
+        }
+
+        return products[0];
+    }
+
+    useEffect(() => {
+        getProduct(productUrl)
+            .then(setProduct)
+            .catch(err => {
                 console.error("Error al obtener los productos: " + err);
             });
 
         return () => {};
-    }, [query, collection]);
+    }, [productUrl, setProduct]);
 
     return <div className={"product-detail-container app-width"}>{
         (product) ?
