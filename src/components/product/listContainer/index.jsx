@@ -8,19 +8,19 @@ import ProductList from '../list';
 
 const ProductListContainer = ({ title, filters}) => {
     const {loading, searchProducts} = useContext(ProductsContext);
-
     const [products, setProducts] = useState([]);
-    const [filter] = useState(filters);
 
     useEffect(() => {        
-        searchProducts(filter)
+        if (loading) return;
+
+        searchProducts(filters)
             .then(setProducts)
             .catch(err => {
                 console.error("Error al obtener los productos: " + err);
             });
 
         return () => {}
-    }, [searchProducts, setProducts, filter])
+    }, [loading, searchProducts, setProducts, filters])
 
     return <div className={"product-list-container app-width"}>
         <h2>{ title }</h2>

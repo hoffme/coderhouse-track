@@ -12,12 +12,7 @@ const SearchPage = () => {
     if (categoryId) filter.category = { id: categoryId };
     if (query) filter.query = query;
 
-    return <>
-        <ProductListContainer
-            title={"Resultados"}
-            filters={filter}
-        />
-    </> 
+    return <ProductListContainer title={"Resultados"} filters={filter} />;
 }
 
 export default SearchPage;

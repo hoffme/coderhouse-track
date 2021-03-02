@@ -13,21 +13,20 @@ import CartPage from './pages/cart';
 
 function App() {
   return (
-    <ProductsProvider>
-      <CartProvider>
-        <BrowserRouter>
+    <BrowserRouter>
+      <ProductsProvider>
+        <CartProvider>
           <Header />
           <Switch>
             <Route exact path={"/"} component={HomePage} />
-            <Route path={"/search/:query"} component={SearchPage} />
-            <Route path={"/search/"} component={SearchPage} />
-            <Route path={"/category/:categoryId"} component={SearchPage} />
+            <Route path={"/search/:query?"} component={SearchPage} forceRefresh={true} />
+            <Route path={"/category/:categoryId"} component={SearchPage} forceRefresh={true} />
             <Route path={"/product/:productUrl"} component={ProductPage} />
             <Route path={"/cart/"} component={CartPage} />
           </Switch>
-        </BrowserRouter>
-      </CartProvider>
-    </ProductsProvider>
+        </CartProvider>
+      </ProductsProvider>      
+    </BrowserRouter>
   );
 }
 

@@ -7,7 +7,7 @@ import { useState } from 'react';
 
 const Search = () => {
     const [query, setQuery] = useState("");
-    let history = useHistory("");
+    let history = useHistory();
 
     return <div className="search">
         <input
