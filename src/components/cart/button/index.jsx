@@ -10,10 +10,9 @@ import cartIcon from '../../../assets/icons/cart.svg';
 const CartButton = () => {
     const {totalCount} = useContext(CartContext);
 
-    if (totalCount === 0) return <></>
-
     return <Link to={"/cart/"} className={"button-cart"}>
-        Finalizar Compra
+        <div className={"total-count"}>{(totalCount > 0) && totalCount}</div>
+        <img src={cartIcon} alt={"icon cart"} />	
     </Link>;
 }
 
