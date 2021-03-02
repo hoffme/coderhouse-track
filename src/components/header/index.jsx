@@ -18,7 +18,6 @@ const Header = () => {
             <Search />
         </div>
         <div className={"right"}>
-            <CartButton />
         </div>
     </header>;
 }

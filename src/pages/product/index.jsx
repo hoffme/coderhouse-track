@@ -3,7 +3,9 @@ import './style.scss';
 import ProductDetailContainer from '../../components/product/detailContainer';
 
 const ProductPage = () => {
-    return <ProductDetailContainer />;
+    return <>
+        <ProductDetailContainer />
+    </>;
 }
 
 export default ProductPage;

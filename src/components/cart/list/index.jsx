@@ -6,10 +6,10 @@ import CartContext from '../../../contexts/cart';
 import CartAmounts from '../amounts';
 import ItemList from '../../item/list';
 
-const CartContainer = () => {
+const CartList = () => {
     const {cart, addItem, removeItem, amounts} = useContext(CartContext);
 
-    return <div className={"cart app-width"}>
+    return <div className={"cart-list app-width"}>
         <ItemList
             items={cart.items}
             onRemoveItem={removeItem}
@@ -19,4 +19,4 @@ const CartContainer = () => {
     </div>;
 }
 
-export default CartContainer;
+export default CartList;

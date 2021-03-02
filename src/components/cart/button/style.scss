@@ -1,21 +1,18 @@
 .button-cart {
-    background: transparent;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, -10%);
+    background-color: white;
     border: none;
-    padding: 0;
-    position: relative;
-
-    img { width: 1.5rem }
-
-    .total-count {
-        position: absolute;
-        width: 1.5rem;
-        height: 1.5rem;
-        display: flex;
-        padding: 0;
-        justify-content: center;
-        align-items: center;
-        transform: translate(10%, -80%);
-        color: darkorange;
-        font-weight: bold;
-    }
+    border-radius: 2rem;
+    padding: 1rem;
+    box-shadow: 1px 1px 5px #666;
+    width: 90%;
+    max-width: 400px;
+    background-color: darkorange;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    text-align: center;
 }
