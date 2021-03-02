@@ -32,7 +32,10 @@ const ProductControl = ({product}) => {
         </div>
         <button
             className={"button-add-to-cart"}
-            onClick={() => addItem(product, count)}
+            onClick={() => {
+                setCount(0);
+                addItem(product, count)
+            }}
         >Agregar al Carrito</button>
         <button
             className={"button-buy-now"}
