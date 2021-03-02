@@ -3,6 +3,7 @@ import './App.scss';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import { CartProvider } from './contexts/cart';
+import { ProductsProvider } from './contexts/products';
 
 import Header from './components/header';
 import HomePage from './pages/home';
@@ -12,19 +13,21 @@ import CartPage from './pages/cart';
 
 function App() {
   return (
-    <CartProvider>
-      <BrowserRouter>
-        <Header />
-        <Switch>
-          <Route exact path={"/"} component={HomePage} />
-          <Route path={"/search/:query"} component={SearchPage} />
-          <Route path={"/search/"} component={SearchPage} />
-          <Route path={"/category/:categoryId"} component={SearchPage} />
-          <Route path={"/product/:productUrl"} component={ProductPage} />
-          <Route path={"/cart/"} component={CartPage} />
-        </Switch>
-      </BrowserRouter>
-    </CartProvider>
+    <ProductsProvider>
+      <CartProvider>
+        <BrowserRouter>
+          <Header />
+          <Switch>
+            <Route exact path={"/"} component={HomePage} />
+            <Route path={"/search/:query"} component={SearchPage} />
+            <Route path={"/search/"} component={SearchPage} />
+            <Route path={"/category/:categoryId"} component={SearchPage} />
+            <Route path={"/product/:productUrl"} component={ProductPage} />
+            <Route path={"/cart/"} component={CartPage} />
+          </Switch>
+        </BrowserRouter>
+      </CartProvider>
+    </ProductsProvider>
   );
 }
 

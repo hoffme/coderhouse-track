@@ -1,44 +1,35 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 
-import { getFirestore } from '../../../firebase';
+import ProductsContext from '../../../contexts/products';
 
 import ProductDetailt from "../detail";
 
 import "./style.scss";
 
 const ProductDetailContainer = () => {
+    const {loading, searchProducts} = useContext(ProductsContext);
+
     const { productUrl } = useParams('productUrl');
     const [product, setProduct] = useState();
 
-    const getProduct = async (url) => {
-        const snapshot = await getFirestore()
-            .collection('products')
-            .where("show", "!=", false)
-            .where("url", "==", url)
-            .limit(1)
-            .get();
-        
-        const products = snapshot.docs.map(doc => {
-            return { id: doc.id, ...doc.data() }
-        });
-
-        if (products.length === 0) {
-            throw new Error("no se ha encontrado el producto");
-        }
-
-        return products[0];
-    }
-
     useEffect(() => {
-        getProduct(productUrl)
-            .then(setProduct)
+        if (loading) return;
+
+        searchProducts({url: productUrl})
+            .then(products => {
+                if (products.length === 0) {
+                    throw new Error("url invalida: " + productUrl);
+                }
+
+                setProduct(products[0]);
+            })
             .catch(err => {
                 console.error("Error al obtener los productos: " + err);
             });
 
         return () => {};
-    }, [productUrl, setProduct]);
+    }, [loading, searchProducts, productUrl, setProduct]);
 
     return <div className={"product-detail-container app-width"}>{
         (product) ?
