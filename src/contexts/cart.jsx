@@ -70,8 +70,8 @@ const CartProvider = ({ cart = defaultCart, children }) => {
         getItem,
         quantityItem,
         availableItem,
-        amounts: amounts(),
-        totalCount: totalCount(),
+        amounts: amounts,
+        totalCount: totalCount,
         isEmpty
     }}>
         {children}
