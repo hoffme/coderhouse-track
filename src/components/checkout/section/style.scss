@@ -1,0 +1,16 @@
+.section-checkout {
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+
+    .title {
+        padding: 0.5rem 0;
+        color: #666
+    }
+
+    .content {
+        flex: 1;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+}

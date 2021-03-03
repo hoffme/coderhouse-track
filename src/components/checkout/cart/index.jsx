@@ -2,21 +2,21 @@ import './style.scss';
 
 import { useContext } from "react";
 
+import SectionCheckout from '../section';
+
 import CartContext from '../../../contexts/cart';
-import CartAmounts from '../amounts';
 import ItemList from '../../item/list';
 
 const CartList = () => {
-    const {cart, addItem, removeItem, amounts} = useContext(CartContext);
+    const {cart, addItem, removeItem} = useContext(CartContext);
 
-    return <div className={"cart-list app-width"}>
+    return <SectionCheckout className={"cart-list"} title={"Carrito"}>
         <ItemList
             items={cart.items}
             onRemoveItem={removeItem}
             onAddItem={addItem}
         />
-        <CartAmounts amounts={amounts} />
-    </div>;
+    </SectionCheckout>;
 }
 
 export default CartList;

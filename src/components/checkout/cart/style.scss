@@ -1,0 +1,9 @@
+.cart-list .content {
+    display: flex;
+    flex-direction: column;
+
+    .item-list {
+        flex: 1;
+        margin-bottom: 1rem;
+    }
+}
