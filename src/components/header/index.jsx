@@ -6,6 +6,7 @@ import logo from '../../assets/logo/logo.png';
 
 import Search from '../search';
 import CartButton from '../cart/button';
+import UserButton from '../user/button';
 
 const Header = () => {
     return <header className={"header app-width"}>
@@ -19,6 +20,7 @@ const Header = () => {
         </div>
         <div className={"right"}>
             <CartButton />
+            <UserButton />
         </div>
     </header>;
 }
