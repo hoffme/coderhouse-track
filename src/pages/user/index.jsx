@@ -6,6 +6,7 @@ import Header from '../../components/header';
 
 import { useContext } from 'react';
 import UserContext from '../../contexts/user';
+import UserLogin from '../../components/user/login';
 
 const UserPage = ({match}) => {
     const { usuario } = useContext(UserContext);
@@ -13,9 +14,7 @@ const UserPage = ({match}) => {
     return <>
         <Switch>
             <Redirect exact path={match.url} to={match.url + "info"}></Redirect>
-            <Route path={match.url + "/login"} >
-                <h1>login Page</h1>
-            </Route>
+            <Route path={match.url + "/login"} component={UserLogin} />
             <Route path={match.url + "/sing-up"} >
                 <h1>singup Page</h1>
             </Route>
