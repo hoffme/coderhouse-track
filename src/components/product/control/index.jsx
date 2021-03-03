@@ -41,7 +41,7 @@ const ProductControl = ({product}) => {
             className={"button-buy-now"}
             onClick={() => {
                 addItem(product, count);
-                history.push('/cart/');
+                history.push('/checkout/');
             }}
         >Comprar Ya</button>
     </>;
