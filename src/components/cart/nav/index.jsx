@@ -1,29 +1,19 @@
-import { Link, useLocation } from 'react-router-dom';
-
+import { useState } from 'react';
 import './style.scss';
 
 const NavCart = () => {
-    const location = useLocation();
+    const [message, setMessage] = useState(null);
 
-    const routes = [
-        {title: "Items", to: "/cart/items/"},
-        {title: "Envio", to: "/cart/delivery/"},
-        {title: "Pago", to: "/cart/payment/"},
-        {title: "Usuario", to: "/cart/user/"},
-        {title: "Info", to: "/cart/info/"},
-    ]
+    const showMessage = (message) => {
+        setMessage(message);
+        setTimeout(() => setMessage(null), 5000);
+    }
 
-    const actualIndex = routes.findIndex(route => location.pathname === route.to);
-
-    return <div className={"nav-cart app-width"}>
-        <div className={"routes"}>
-            {
-                routes.map((route, index) => {
-                    const style = (index < actualIndex) ? 'active' : (actualIndex === index) ? 'selected' : '';
-
-                    return <Link key={index} to={route.to} className={style}>{route.title}</Link>
-                })
-            }
+    return <div className={"nav-cart"}>
+        { (message && message.length > 0) && <div className={"message"}>{message}</div> }
+        <div className={"controls"}>
+            <button className={"volver"}>Volver</button>
+            <button className={"siguiente"} onClick={() => showMessage("hola que tal")}>Sigueinte</button>
         </div>
     </div>
 }
