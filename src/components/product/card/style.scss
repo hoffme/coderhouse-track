@@ -19,21 +19,11 @@
         margin: auto;
         font-size: 1.25em;
         text-align: center;
-    }
-
-    .description {
-        flex: 1;
-        width: 90%;
-        margin: 0.5rem auto;
-        text-align: justify;
-        max-height: 2.4rem;
-        overflow: hidden;
-        color: #666;
-        font-size: 0.75em;
+        padding: 1rem 0;
     }
 
     .price {
-        flex: 1;
+        flex-basis: 1rem;
         width: 100%;
         text-align: center;
         font-size: 1.25em;
