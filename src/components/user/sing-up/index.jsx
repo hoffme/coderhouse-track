@@ -7,12 +7,14 @@ import { useContext, useState } from 'react';
 import UserContext from '../../../contexts/user';
 import { getAuth, googleAuthProvider } from '../../../firebase';
 
-const UserLogin = ({redirectTo = '/'}) => {
+const UserSingUp = ({redirectTo = '/'}) => {
     const {user} = useContext(UserContext);
     const history = useHistory();
 
+    const [fullName, setFullName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+
     const [message, setMessasge] = useState("");
 
     if (user) return <Redirect to={"/user/"} />
@@ -28,14 +30,22 @@ const UserLogin = ({redirectTo = '/'}) => {
         }).then(t => clearTimeout(t));
     }
 
-    const credentialsLogin = async e => {
+    const credentialsSingUp = async e => {
         e.preventDefault();
 
         await getAuth()
-            .signInWithEmailAndPassword(email, password)
-            .then(() => history.push(redirectTo))
-            .catch(() => {
-                showMessage("Error al ingresar, correo o contraseña invalidos");
+            .createUserWithEmailAndPassword(email, password)
+            .then(() => {
+                getAuth().currentUser.updateProfile({displayName: fullName})
+                    .then(() => history.push(redirectTo))
+                    .catch(() => showMessage("Estamos fritos, no tienes nombre"))
+            })
+            .catch(err => {
+                if (err.code === 'auth/popup-closed-by-user') {
+                    showMessage("El email esta en uso puede ser con google")
+                } else {
+                    showMessage("Error al ingresar, correo o contraseña invalidos");   
+                }
             });
     }
 
@@ -48,21 +58,25 @@ const UserLogin = ({redirectTo = '/'}) => {
             });
     }
 
-    return <div className={"user-login"}>
+    return <div className={"user-sing-up"}>
         <Link to={"/"}><img src={userIcon} alt={"logo trank"} /></Link>
-        <h1>Login</h1>
+        <h1>Crear Cuenta</h1>
         <div className={"card"}>
-            <form onSubmit={credentialsLogin}>
+            <form onSubmit={credentialsSingUp}>
+                <input type={"text"} placeholder={"Nombre Completo"} onChange={e => setFullName(e.currentTarget.value)} value={fullName} />
                 <input type={"text"} placeholder={"Correo"} onChange={e => setEmail(e.currentTarget.value)} value={email} />
                 <input type={"password"} placeholder={"Contraseña"} onChange={e => setPassword(e.currentTarget.value)} value={password} />
-                <input type={"submit"} className={"button-login"} value={"Ingresar"} />
+                <input type={"submit"} className={"button-login"} value={"Registrar"} />
             </form>
-            <Link className={"button-register"} to={"/user/register"}>Registrar</Link>
-            <Link className={"button-recover"} to={"/user/recover"}>Recuperar Contraseña</Link>
+            <label>
+                Ya tienes cuenta? 
+                <Link to={"/user/login"}> Ingresa</Link>
+            </label>
+            
         </div>
-        <button className={"button-google"} onClick={() => socialLogin(googleAuthProvider)}>Ingresa con Google</button>
+        <button className={"button-google"} onClick={() => socialLogin(googleAuthProvider)}>Registrar con Google</button>
         { message && <div className={"message"}>{message}</div> }
     </div>;
 }
 
-export default UserLogin;
+export default UserSingUp;
