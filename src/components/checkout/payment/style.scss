@@ -1,4 +1,17 @@
 .cart-payment .content {
     display: flex;
     flex-direction: column;
+
+    select {
+        margin: 1rem;
+        padding: 0.5rem;
+        font-weight: bold;
+        border-radius: 5px;
+        background-color: transparent;
+    }
+
+    .description {
+        font-size: 0.8em;
+        margin: 0.5rem 1rem;
+    }
 }

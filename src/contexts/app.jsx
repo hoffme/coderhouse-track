@@ -1,13 +1,16 @@
 import { CartProvider } from './cart';
 import { ProductsProvider } from './products';
 import { UserProvider } from './user';
+import { CheckOutProvider } from './checkout';
 
 const AppContext = ({children}) => {
   return <>
     <ProductsProvider>
       <UserProvider>
         <CartProvider>
-          {children}
+          <CheckOutProvider>
+           {children}
+          </CheckOutProvider>
         </CartProvider>
       </UserProvider>
     </ProductsProvider>
