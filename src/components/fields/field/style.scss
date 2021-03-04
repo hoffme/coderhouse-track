@@ -1,0 +1,10 @@
+.field {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem;
+
+    .field-title {
+        font-size: 0.75em;
+        color: #666;
+    }
+}

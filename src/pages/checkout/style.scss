@@ -1,13 +1,13 @@
+@import '../../sass/vars';
+
 .checkout-page {
     height: calc(80vh - 5rem);
     padding: 1rem;
     display: grid;
     grid-template-areas:    "list delivery"
-                            "list payment"
-                            "amount payment"
-                            "amount finish";
+                            "amount payment";
     grid-template-columns: 60% 40%;
-    grid-template-rows: 60% 20% 10% 10%;
+    grid-template-rows: 80% 20%;
 
     .cart-list { grid-area: list; }
 
@@ -17,5 +17,19 @@
 
     .cart-amounts { grid-area: amount; }
 
-    .button-buy { grid-area: finish; }
+    .buttom-buy {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translate(-50%, 0);
+        width: 90%;
+        max-width: 400px;
+    }
 }
+
+@media (max-width: $display-mid-min + ($app-margin * 2)) {
+    .checkout-page {
+        display: flex;
+        flex-direction: column;
+    }
+  }

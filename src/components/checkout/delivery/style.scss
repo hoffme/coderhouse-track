@@ -1,4 +1,14 @@
 .cart-delivery .content {
     display: flex;
     flex-direction: column;
+    overflow-y: auto;
+
+    .text {
+        font-size: 0.75em;
+        margin: 0 0.5rem;
+    }
+
+    .new-address {
+        padding: 0 1rem;
+    }
 }
