@@ -13,7 +13,6 @@ const CheckOutProvider = ({ children }) => {
     const validDelivery = () => {
         if (!delivery) throw new Error("Entrega: Defina un metodo de entraga");
         if (!delivery.date) throw new Error("Entrega: Seleccione una fecha de entrega");
-        if (!delivery.hour) throw new Error("Entrega: Seleccione una hora de entrega");
         if (!delivery.address) throw new Error("Entrega: Seleccione una direccion de entrega");
         
         if (delivery.address.id) return;

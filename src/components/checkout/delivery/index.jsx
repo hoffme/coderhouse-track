@@ -13,21 +13,6 @@ import dateInputFormat from '../../../utils/dateInputFormat';
 const CartDelivery = () => {
     const {user, delivery, setDelivery} = useContext(CheckOutContext);
 
-    const getHours = date => {
-        return {
-            '1': {hours: '15', minutes: '30'},
-            '2': {hours: '16', minutes: '00'}
-        }
-    }
-    
-    const hours = [
-        { value: '-', disabled: true, title: 'Seleccione un horario' },
-        ...Object.entries(getHours(delivery ? delivery.date : '')).map(([id, data]) => {
-            return {value: id, title: data.hours + ":" + data.minutes};
-        })
-    ]
-    if (hours.length === 0) hours.push({ value: '', title: 'No tenemos entrega para esa fecha', disable: true });
-
     const directions = [
         { value: '-', disabled: true, title: 'Seleccione una direccion' },
         ...Object.entries(user.address).map(([id, data]) => {
@@ -54,12 +39,6 @@ const CartDelivery = () => {
             type={"date"}
             value={(delivery && delivery.date) ? delivery.date : dateInputFormat(new Date())}
             onChange={e => setDelivery({...delivery, date: e.currentTarget.value})}
-        />
-        <SelectField
-            title={"Hora"}
-            value={(delivery && delivery.hour) ? delivery.hour : '-'}
-            onChange={e => setDelivery({hour: e.currentTarget.value})}
-            options={hours}
         />
         <SelectField
             title={"Direcciones"}
