@@ -11,21 +11,12 @@ import CreateDirection from './createDirection';
 import dateInputFormat from '../../../utils/dateInputFormat';
 
 const CartDelivery = () => {
-    const {delivery, setDelivery} = useContext(CheckOutContext);
+    const {user, delivery, setDelivery} = useContext(CheckOutContext);
 
     const getHours = date => {
         return {
             '1': {hours: '15', minutes: '30'},
             '2': {hours: '16', minutes: '00'}
-        }
-    }
-
-    const getDirections = () => {
-        return {
-            '1': {city: 'asdasd', address: 'asdasda', height: '322', deptoNumber: 'asddd'},
-            '2': {city: 'asdasd', address: 'asdasda', height: '322', deptoNumber: 'asddd'},
-            '3': {city: 'asdasd', address: 'asdasda', height: '322', deptoNumber: 'asddd'},
-            '4': {city: 'asdasd', address: 'asdasda', height: '322', deptoNumber: 'asddd'}
         }
     }
     
@@ -39,7 +30,7 @@ const CartDelivery = () => {
 
     const directions = [
         { value: '-', disabled: true, title: 'Seleccione una direccion' },
-        ...Object.entries(getDirections()).map(([id, data]) => {
+        ...Object.entries(user.address).map(([id, data]) => {
             return {value: id, title: data.city + ", " + data.address + " " + data.height};
         }),
         { value: '', title: 'Crear Nueva' }
