@@ -1,96 +1,92 @@
 import './style.scss';
 
-import { useState } from 'react';
+import { useState, useContext, useEffect } from 'react';
+
+import CheckOutContext from '../../../contexts/checkout';
 
 import SectionCheckout from '../section';
 import InputField from '../../fields/input';
 import SelectField from '../../fields/select';
-
-const dateInput = (date) => {
-    date.setMinutes(date.getMinutes() - date.getTimezoneOffset());
-    return date.toJSON().slice(0,10);
-}
-
-const CreateDirection = ({onChange}) => {
-    const [address, setAddress] = useState({});
-
-    const cities = [{value:'peh', title:'Pehuajo'}];
-
-    return <div className={"new-address"}>
-        <SelectField
-            title={"Ciudad"}
-            value={address.city ? address.city : ''}
-            onChange={e => {
-                setAddress({...address, city: e.currentTarget.value});
-                onChange({...address, city: e.currentTarget.value});
-            }}
-            options={cities}
-        />
-        <InputField
-            title={"Calle"}
-            value={address.address ? address.address : ''}
-            onChange={e => {
-                setAddress({...address, address: e.currentTarget.value});
-                onChange({...address, address: e.currentTarget.value});
-            }}
-        />
-        <InputField
-            title={"Altura"}
-            value={address.height ? address.height : ''}
-            onChange={e => {
-                setAddress({...address, height: e.currentTarget.value});
-                onChange({...address, height: e.currentTarget.value});
-            }}
-        />
-        <InputField
-            title={"Depto/Numero"}
-            value={address.deptoNumber ? address.deptoNumber : ''}
-            onChange={e => {
-                setAddress({...address, deptoNumber: e.currentTarget.value});
-                onChange({...address, deptoNumber: e.currentTarget.value});
-            }}
-        />
-    </div>
-}
+import CreateDirection from './createDirection';
+import dateInputFormat from '../../../utils/dateInputFormat';
 
 const CartDelivery = () => {
-    const hours = [
-        { value: '1', title: '15:30' }
-    ]
-    const directions = [
-        { value: '1', title: 'Gutierrez 1655, Pehuajo' },
-        { value: '-', title: 'Crear Nueva' },
-    ]
+    const {delivery, setDelivery} = useContext(CheckOutContext);
 
-    const [date, setDate] = useState(dateInput(new Date()));
-    const [hour, setHour] = useState('');
-    const [address, setAddress] = useState(null);
-    const [newAddress, setNewAddress] = useState(directions.length === 1);
+    const getHours = date => {
+        return {
+            '1': {hours: '15', minutes: '30'},
+            '2': {hours: '16', minutes: '00'}
+        }
+    }
+
+    const getDirections = () => {
+        return {
+            '1': {city: 'asdasd', address: 'asdasda', height: '322', deptoNumber: 'asddd'},
+            '2': {city: 'asdasd', address: 'asdasda', height: '322', deptoNumber: 'asddd'},
+            '3': {city: 'asdasd', address: 'asdasda', height: '322', deptoNumber: 'asddd'},
+            '4': {city: 'asdasd', address: 'asdasda', height: '322', deptoNumber: 'asddd'}
+        }
+    }
+    
+    const hours = [
+        { value: '-', disabled: true, title: 'Seleccione un horario' },
+        ...Object.entries(getHours(delivery ? delivery.date : '')).map(([id, data]) => {
+            return {value: id, title: data.hours + ":" + data.minutes};
+        })
+    ]
+    if (hours.length === 0) hours.push({ value: '', title: 'No tenemos entrega para esa fecha', disable: true });
+
+    const directions = [
+        { value: '-', disabled: true, title: 'Seleccione una direccion' },
+        ...Object.entries(getDirections()).map(([id, data]) => {
+            return {value: id, title: data.city + ", " + data.address + " " + data.height};
+        }),
+        { value: '', title: 'Crear Nueva' }
+    ]
+    
+    const [newAddress, setNewAddress] = useState(delivery && delivery.address && !delivery.address.id);
+
+    useEffect(() => {
+        const initialDelivery = delivery ? delivery : {};
+        if (initialDelivery.date) return;
+
+        initialDelivery.date = dateInputFormat(new Date());
+        setDelivery(initialDelivery);
+
+        return () => {};
+    }, [delivery, setDelivery]);
 
     return <SectionCheckout className={"cart-delivery"} title={"Entrega"}>
         <InputField
             title={"Fecha"}
             type={"date"}
-            value={date}
-            onChange={e => setDate(e.currentTarget.value)}
+            value={(delivery && delivery.date) ? delivery.date : dateInputFormat(new Date())}
+            onChange={e => setDelivery({...delivery, date: e.currentTarget.value})}
         />
         <SelectField
             title={"Hora"}
-            value={hour}
-            onChange={e => setHour(e.currentTarget.value)}
+            value={(delivery && delivery.hour) ? delivery.hour : '-'}
+            onChange={e => setDelivery({hour: e.currentTarget.value})}
             options={hours}
         />
         <SelectField
             title={"Direcciones"}
-            value={address ? address : ''}
+            value={(delivery && delivery.address) ? (delivery.address.id ? delivery.address.id : '') : '-'}
             onChange={e => {
-                const value = e.currentTarget.value;
-                setNewAddress(value === '-');
-                setAddress(value);
+                const addressSelected = e.currentTarget.value !== '';
+                setDelivery({...delivery, address: (addressSelected ? { id: e.currentTarget.value } : {}) });
+                setNewAddress(!addressSelected);
             }}
             options={directions}
         />
-        { newAddress && <CreateDirection onChange={address => setNewAddress(address)} /> }
+        { newAddress &&
+            <CreateDirection
+                onChange={address => {
+                    setDelivery({...delivery, address: address});
+                }}
+            />    
+        }
     </SectionCheckout>;
 }
 

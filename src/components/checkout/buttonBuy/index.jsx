@@ -21,8 +21,8 @@ const ButtonBuy = () => {
         if (message) return;
 
         buy()
-            .catch(err => showMessage(err))
-            .then(console.log);
+            .then(console.log)
+            .catch(err => showMessage(err.message));
     }
 
     return <button

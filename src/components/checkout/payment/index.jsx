@@ -21,8 +21,8 @@ const CartPayment = () => {
     return <SectionCheckout className={"cart-payment"} title={"Metodo de Pago"}>
         <Select
             title={'Metodos de pago:'}
-            value={payment ? payment.value : ''} 
-            onChange={e => setPayment(methodsPayment[e.currentTarget.value])}
+            value={payment ? payment : ''} 
+            onChange={e => setPayment(e.currentTarget.value)}
             options={options}
         />
     </SectionCheckout>;
