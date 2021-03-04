@@ -9,4 +9,6 @@
         color: #aaa;
         font-size: 0.9em;
     }
+
+    :last-child { border-bottom: none }
 }
