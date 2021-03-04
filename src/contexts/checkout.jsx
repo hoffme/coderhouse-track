@@ -10,13 +10,16 @@ const CheckOutProvider = ({ children }) => {
     const [delivery, setDelivery] = useState(null);
     const [payment, setPayment] = useState(null);
 
+    const buy = () => new Promise((resolve, reject) => reject("Todo mal"));
+
     return <CheckOutContext.Provider value={{
         cart,
         user,
         delivery,
         setDelivery,
         payment,
-        setPayment
+        setPayment,
+        buy
     }}>
         {children}
     </CheckOutContext.Provider>
