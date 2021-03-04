@@ -8,6 +8,7 @@ import HomePage from './pages/home';
 import SearchPage from './pages/search';
 import ProductPage from './pages/product';
 import CheckOutPage from './pages/checkout';
+import CheckOutFinishPage from './pages/checkoutFinish';
 import UserPage from './pages/user';
 
 const App = () => {
@@ -19,7 +20,8 @@ const App = () => {
           <Route path={"/search/:query?"} component={SearchPage} forceRefresh={true} />
           <Route path={"/category/:categoryId"} component={SearchPage} forceRefresh={true} />
           <Route path={"/product/:productUrl"} component={ProductPage} />
-          <Route path={"/checkout/"} component={CheckOutPage} />
+          <Route exact path={"/checkout/"} component={CheckOutPage} />
+          <Route exact path={"/checkout/finish"} component={CheckOutFinishPage} />
           <Route path={"/user/"} component={UserPage} />
         </Switch>  
       </AppContext>      

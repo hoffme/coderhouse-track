@@ -15,6 +15,7 @@ const app = firebase.initializeApp({
 export const getFirebase = () => app;
 
 export const getFirestore = () => firebase.firestore(app);
+export const firestoreFormatDate = (date) => firebase.firestore.Timestamp.fromDate(date);
 
 export const getAuth = () => firebase.auth(app);
 export const googleAuthProvider = new firebase.auth.GoogleAuthProvider();

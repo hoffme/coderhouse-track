@@ -29,6 +29,23 @@ const ProductsProvider = ({children}) => {
         return () => {}
     }, [collection])
 
+    const getProduct = async (productId) => {
+        const doc = await collection
+            .doc(productId)
+            .get();
+        
+        if (!doc.exists) {
+            throw new Error("product '" + productId + "' not exist");
+        }
+
+        const newProducts = {...products};
+        newProducts[doc.id] = { id: doc.id, ...doc.data() }
+
+        setProducts(newProducts);
+
+        return newProducts[doc.id];
+    }
+
     const searchProducts = (filter) => {
         return new Promise((resolve) => {
             resolve(productsFilter(Object.values(products), filter));
@@ -38,6 +55,7 @@ const ProductsProvider = ({children}) => {
     return <ProductsContext.Provider value={{
         products: Object.values(products),
         loading,
+        getProduct,
         searchProducts
     }}>
         {children}
@@ -46,25 +64,3 @@ const ProductsProvider = ({children}) => {
 
 export default ProductsContext;
 export {ProductsProvider};
-
-/*
-
-    const getProduct = async (product) => {
-        const doc = await collection
-            .doc(product.id)
-            .where("show", "==", true)
-            .get();
-        
-        if (!doc.exists) {
-            throw new Error("product '" + product.id + "' not exist");
-        }
-
-        const products = {...products};
-        products[doc.id] = { id: doc.id, ...doc.data() }
-
-        setProducts(products);
-
-        return products[doc.id];
-    }
-
-*/

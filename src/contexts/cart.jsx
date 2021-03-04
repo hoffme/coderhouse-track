@@ -1,10 +1,14 @@
-import { createContext, useState } from 'react';
+import { createContext, useContext, useState } from 'react';
+
+import ProductsContext from './products';
 
 const defaultCart = { items: [] };
 
 const CartContext = createContext();
 
 const CartProvider = ({ cart = defaultCart, children }) => {
+    const products = useContext(ProductsContext);
+
     const [items, setItems] = useState(cart.items.reduce((items, item) => {
         return items[item.item.id] = item;
     }, {}));
@@ -53,6 +57,25 @@ const CartProvider = ({ cart = defaultCart, children }) => {
         return amounts;
     }
 
+    const check = () => {
+        const checkedStock = new Set();
+
+        return new Promise((resolve, reject) => {
+            Object.values(items).forEach(item => {
+                products.getProduct(item.item.id).then(product => {
+                    if (item.quantity > product.stock) {
+                        reject("El item " + product.title + " se paso de stock")
+                    }
+
+                    checkedStock.add(product.id);
+                    if (checkedStock.size === Object.keys(items).length) {
+                        resolve();
+                    }
+                })
+            })
+        })
+    }
+
     const totalCount = () => {
         return Object.values(items).reduce((total, item) => total + item.quantity, 0);
     }
@@ -62,7 +85,7 @@ const CartProvider = ({ cart = defaultCart, children }) => {
     const quantityItem = (productId) => items[productId] ? items[productId].quantity : 0
 
     return <CartContext.Provider value={{
-        cart: { items: Object.values(items) },
+        items: Object.values(items),
         addItem,
         removeItem,
         clearItems,
@@ -72,6 +95,7 @@ const CartProvider = ({ cart = defaultCart, children }) => {
         availableItem,
         amounts: amounts,
         totalCount: totalCount,
+        check,
         isEmpty
     }}>
         {children}

@@ -13,11 +13,11 @@ import dateInputFormat from '../../../utils/dateInputFormat';
 const CartDelivery = () => {
     const {user, delivery, setDelivery} = useContext(CheckOutContext);
 
-    const directions = [
+    const address = [
         { value: '-', disabled: true, title: 'Seleccione una direccion' },
-        ...Object.entries(user.address).map(([id, data]) => {
-            return {value: id, title: data.city + ", " + data.address + " " + data.height};
-        }),
+        ...((user.address ? user.address : []).map(address => {
+            return {value: address.id, title: address.city + ", " + address.address + " " + address.height};
+        })),
         { value: '', title: 'Crear Nueva' }
     ]
     
@@ -48,7 +48,7 @@ const CartDelivery = () => {
                 setDelivery({...delivery, address: (addressSelected ? { id: e.currentTarget.value } : {}) });
                 setNewAddress(!addressSelected);
             }}
-            options={directions}
+            options={address}
         />
         { newAddress &&
             <CreateDirection
