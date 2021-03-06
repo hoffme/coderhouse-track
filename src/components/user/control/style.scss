@@ -1,0 +1,32 @@
+.user-control {
+    display: flex;
+    flex-direction: column;
+
+    h3 {
+        padding: 1rem;
+        text-align: center;
+    }
+
+    nav {
+        display: flex;
+        flex-direction: column;
+
+        li {
+            display: block;
+            padding: 0.25rem;
+    
+            a, button {
+                width: 100%;
+                font-size: 0.9rem;
+                background-color: transparent;
+                display: block;
+                box-sizing: border-box;
+                text-decoration: none;
+                color: black;
+                padding: 0.5rem;
+                border-radius: 5px;
+                border: 1px solid #ccc;
+            }
+        }
+    }
+}

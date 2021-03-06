@@ -1,0 +1,12 @@
+@import '../../sass/vars';
+
+.user-page {
+    display: flex;
+    flex-direction: column;
+
+    .user-section { padding: 1rem; }
+}
+
+@media (min-width: $display-mid-min + ($app-margin * 2)) {
+    .user-page { flex-direction: row }
+}

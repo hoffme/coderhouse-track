@@ -2,7 +2,6 @@ import './style.scss';
 
 import { useParams } from 'react-router-dom';
 
-import Header from '../../components/header';
 import ProductListContainer from '../../components/product/listContainer';
 
 const SearchPage = () => {
@@ -14,7 +13,6 @@ const SearchPage = () => {
     if (query) filter.query = query;
 
     return <>
-        <Header />
         <ProductListContainer title={"Resultados"} filters={filter} />
     </>;
 }

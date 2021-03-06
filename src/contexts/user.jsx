@@ -4,9 +4,10 @@ import { getAuth, getFirestore, googleAuthProvider } from '../firebase';
 const UserContext = createContext();
 
 const UserProvider = ({ children }) => {
+    const [loading, setLoading] = useState(true);
     const [user, setUser] = useState(null);
-    const [address, setAddress] = useState(null);
-    const [buys, setBuys] = useState(null);
+    const [address, setAddress] = useState([]);
+    const [buys, setBuys] = useState({});
 
     const addAddress = async (address) => {
         const userAddress = {...address, user_id: user.uid }
@@ -34,32 +35,38 @@ const UserProvider = ({ children }) => {
     const getBuy = id => buys[id];
 
     useEffect(() => {
-        getAuth().onAuthStateChanged(user => {
+        setLoading(true);
+        
+        getAuth().onAuthStateChanged(async (user) => {
+            setLoading(true);
+
             setUser(user);
 
             if (!user) return;
 
-            getFirestore()
+            const snapshotAddress = await getFirestore()
                 .collection('address')
                 .where("user_id", "==", user.uid)
-                .get()
-                .then(snapshot => {
-                    setAddress(snapshot.docs.map(doc => {
-                        return { id: doc.id, ...doc.data() };
-                    }));
-                })
-                .catch(() => setAddress([]));
+                .get();
+            
+            if (snapshotAddress) {
+                setAddress(snapshotAddress.docs.map(doc => {
+                    return { id: doc.id, ...doc.data() };
+                }));
+            }
 
-            getFirestore()
-                .collection('buys')
+            const snapshotBuys = await getFirestore()
+                .collection('buy')
                 .where("user_id", "==", user.uid)
-                .get()
-                .then(snapshot => {
-                    const buys = {};
-                    snapshot.docs.map(doc => buys[doc.id] = { id: doc.id, ...doc.data() })
-                    setBuys(buys);
-                })
-                .catch(() => setBuys({}));
+                .get();
+            if (snapshotBuys) {
+                const buys = {};
+                snapshotBuys.docs.forEach(doc => buys[doc.id] = { id: doc.id, ...doc.data() })
+                setBuys(buys);
+            }
+
+                
+            setLoading(false);
         });
 
         return () => {}
@@ -92,8 +99,9 @@ const UserProvider = ({ children }) => {
     const googleLogin = () => socialLogin(googleAuthProvider);
 
     return <UserContext.Provider value={{
+        loading,
         user,
-        buys: buys ? Object.values(buys) : null,
+        buys: buys ? Object.values(buys) : [],
         addBuy,
         getBuy,
         address,

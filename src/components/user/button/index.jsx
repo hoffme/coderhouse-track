@@ -4,7 +4,7 @@ import UserContext from '../../../contexts/user';
 
 import WindowButton from '../../windowButton';
 
-import UserWindowInfo from '../windowInfo';
+import UserControl from '../control';
 import UserWindowLogin from '../windowLogin';
 
 import userIcon from '../../../assets/icons/usuario.svg';
@@ -18,7 +18,7 @@ const UserButton = () => {
         className={"button-user"}
         contentButton={<img src={userIcon} alt={"icon user"} />}
     >
-        { loggedIn ? <UserWindowInfo /> : <UserWindowLogin /> }
+        { loggedIn ? <UserControl /> : <UserWindowLogin /> }
     </WindowButton>;
 }
 
