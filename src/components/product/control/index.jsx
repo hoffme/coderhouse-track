@@ -1,14 +1,14 @@
 import './style.scss';
 
 import { useContext, useState } from "react";
-import { useHistory } from 'react-router-dom';
 
 import CartContext from '../../../contexts/cart';
+
+import ButtonCheckout from '../../checkout/buttonCheckout';
 
 const ProductControl = ({product}) => {
     const {addItem, availableItem, quantityItem} = useContext(CartContext);
     const [count, setCount] = useState(0);
-    const history = useHistory();
 
     if (product.stock === 0) {
         return <div className={"item-out-stock"}>Sin Stock</div>;
@@ -37,13 +37,7 @@ const ProductControl = ({product}) => {
                 addItem(product, count)
             }}
         >Agregar al Carrito</button>
-        <button
-            className={"button-buy-now"}
-            onClick={() => {
-                addItem(product, count);
-                history.push('/checkout/');
-            }}
-        >Comprar Ya</button>
+        <ButtonCheckout />
     </>;
 }
 

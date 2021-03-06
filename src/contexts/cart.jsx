@@ -93,7 +93,7 @@ const CartProvider = ({ cart = defaultCart, children }) => {
         getItem,
         quantityItem,
         availableItem,
-        amounts: amounts,
+        amounts,
         totalCount: totalCount,
         check,
         isEmpty

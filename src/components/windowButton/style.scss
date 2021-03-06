@@ -1,0 +1,41 @@
+@import '../../sass/vars';
+
+.window-button {
+    position: relative;
+
+    .button {
+        position: relative;
+        border-radius: 50%;
+        width: 3rem;
+        height: 3rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: transparent;
+        border: none;
+    
+        &:hover { background-color: #66666640 }
+    
+        img { width: 1.5rem }
+    }
+
+    .window {
+        position: fixed;
+        border-radius: 5px;
+        border: none;
+        box-shadow: 1px 1px 5px #aaa;
+        background-color: white;
+        top: 6rem;
+        right: 1rem;
+        width: calc(100% - 2rem);
+        max-width: 500px;
+        overflow-y: auto;
+    }
+}
+
+
+@media (min-width: $display-big-min + ($app-margin * 2)) {
+    .window-button .window {
+        right: calc(50% - calc(#{$display-big-min} / 2));
+    }
+  }

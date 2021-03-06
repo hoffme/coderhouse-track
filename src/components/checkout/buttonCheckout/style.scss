@@ -1,0 +1,17 @@
+.button-checkout {
+    text-decoration: none;
+    text-align: center;
+    background-color: darkorange;
+    border: none;
+    color: white;
+    padding: 0.75rem;
+    border-radius: 5px;
+    box-shadow: 1px 1px 5px #999;
+    font-weight: bold;
+    font-size: 1.1em;
+
+    &:disabled {
+        background-color: #ccc;
+        color:#aaa;
+    }
+}

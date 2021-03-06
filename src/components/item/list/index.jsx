@@ -1,14 +1,11 @@
 import './style.scss';
 
 import ItemRow from '../row';
-import { Link } from 'react-router-dom';
 
 const ItemList = ({items, onRemoveItem, onAddItem}) => {
     return <div className={"item-list"}>{
         items.length === 0 ?
-            <label className={"without-items"}>
-                No hay items en el carrito <br></br><Link to={"/"}>Volver</Link>
-            </label>
+            <label className={"without-items"}>No hay items en el carrito</label>
             :
             items.map((item, index) => {
                 return <ItemRow
