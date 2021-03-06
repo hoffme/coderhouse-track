@@ -24,9 +24,14 @@ const UserProvider = ({ children }) => {
         const data = await getFirestore().collection('buy').add(userBuy);
         if (!data || !data.id) return undefined;
 
-        setBuys([...buys, { ...userBuy, id: data.id }]);
+        const newBuys = {...buys};
+        newBuys[data.id] = { ...userBuy, id: data.id };
+        setBuys(newBuys);
+
         return data.id;
     }
+    
+    const getBuy = id => buys[id];
 
     useEffect(() => {
         getAuth().onAuthStateChanged(user => {
@@ -50,11 +55,11 @@ const UserProvider = ({ children }) => {
                 .where("user_id", "==", user.uid)
                 .get()
                 .then(snapshot => {
-                    setBuys(snapshot.docs.map(doc => {
-                        return { id: doc.id, ...doc.data() };
-                    }));
+                    const buys = {};
+                    snapshot.docs.map(doc => buys[doc.id] = { id: doc.id, ...doc.data() })
+                    setBuys(buys);
                 })
-                .catch(() => setBuys([]));
+                .catch(() => setBuys({}));
         });
 
         return () => {}
@@ -88,8 +93,9 @@ const UserProvider = ({ children }) => {
 
     return <UserContext.Provider value={{
         user,
-        buys,
+        buys: buys ? Object.values(buys) : null,
         addBuy,
+        getBuy,
         address,
         addAddress,
         loggedIn,

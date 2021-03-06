@@ -2,13 +2,10 @@ import { useState, createContext, useContext } from "react";
 import UserContext from "./user";
 import CartContext from "./cart";
 import { firestoreFormatDate } from "../firebase";
-import { useHistory } from "react-router-dom";
 
 const CheckOutContext = createContext();
 
 const CheckOutProvider = ({ children }) => {
-    const history = useHistory();
-
     const user = useContext(UserContext);
     const cart = useContext(CartContext);
     const [delivery, setDelivery] = useState(null);
@@ -59,10 +56,18 @@ const CheckOutProvider = ({ children }) => {
             })
         }
 
-        await user.addBuy(buy);
+        const buyId = await user.addBuy(buy);
 
-        history.push('/checkout/finish');
+        clear();
+        
+        return buyId;
     };
+
+    const clear = () => {
+        cart.clear();
+        setPayment(null);
+        setDelivery(null);
+    }
 
     return <CheckOutContext.Provider value={{
         cart,
@@ -71,7 +76,8 @@ const CheckOutProvider = ({ children }) => {
         setDelivery,
         payment,
         setPayment,
-        buy
+        buy,
+        clear
     }}>
         {children}
     </CheckOutContext.Provider>

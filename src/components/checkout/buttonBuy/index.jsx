@@ -4,8 +4,8 @@ import CheckOutContext from '../../../contexts/checkout';
 
 import './style.scss';
 
-const ButtonBuy = () => {
-    const {buy} = useContext(CheckOutContext);
+const ButtonBuy = ({onFinishBuy}) => {
+    const {user, buy} = useContext(CheckOutContext);
 
     const [message, setMessage] = useState(null);
 
@@ -18,18 +18,17 @@ const ButtonBuy = () => {
     }
 
     const actionBuy = () => {
-        if (message) return;
-
         buy()
-            .then(console.log)
+            .then(id => onFinishBuy(user.getBuy(id)))
             .catch(err => showMessage(err.message));
     }
 
-    return <button
-        onClick={actionBuy}
-        className={"buttom-buy " + (message && 'message')}
-    >
-        { message ? message : "Finalizar Compra" }
+    if (message) {
+        return <button className={"button-buy message"}>{message}</button>;
+    }
+
+    return <button onClick={actionBuy} className={"buttom-buy"}>
+        Finalizar Compra
     </button>
 }
 

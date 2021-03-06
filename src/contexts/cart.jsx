@@ -37,7 +37,7 @@ const CartProvider = ({ cart = defaultCart, children }) => {
         setItems(newItems);
     }
 
-    const clearItems = () => setItems({});
+    const clear = () => setItems({});
 
     const itemInCart = (itemID) => itemID in items;
 
@@ -88,7 +88,7 @@ const CartProvider = ({ cart = defaultCart, children }) => {
         items: Object.values(items),
         addItem,
         removeItem,
-        clearItems,
+        clear,
         itemInCart,
         getItem,
         quantityItem,
