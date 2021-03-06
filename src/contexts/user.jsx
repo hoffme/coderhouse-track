@@ -1,5 +1,5 @@
 import { useEffect, useState, createContext } from "react";
-import { getAuth, getFirestore } from '../firebase';
+import { getAuth, getFirestore, googleAuthProvider } from '../firebase';
 
 const UserContext = createContext();
 
@@ -32,6 +32,8 @@ const UserProvider = ({ children }) => {
         getAuth().onAuthStateChanged(user => {
             setUser(user);
 
+            if (!user) return;
+
             getFirestore()
                 .collection('address')
                 .where("user_id", "==", user.uid)
@@ -58,12 +60,43 @@ const UserProvider = ({ children }) => {
         return () => {}
     }, []);
 
+    const loggedIn = !!user;
+
+    const credentialSingUp = (fullName, email, password) => {
+        return new Promise((resolve, reject) => {
+            getAuth().createUserWithEmailAndPassword(email, password)
+                .then(() => {
+                    getAuth()
+                        .currentUser
+                        .updateProfile({displayName: fullName})
+                        .then(resolve)
+                        .catch(reject)
+                })
+                .catch(reject)
+        })
+    }
+
+    const socialLogin = (provider) => getAuth().signInWithPopup(provider);
+
+    const credentialsLogin = (email, password) => {
+        return getAuth().signInWithEmailAndPassword(email, password);
+    }
+
+    const logOut = () => getAuth().signOut();
+
+    const googleLogin = () => socialLogin(googleAuthProvider);
+
     return <UserContext.Provider value={{
         user,
         buys,
         addBuy,
         address,
-        addAddress
+        addAddress,
+        loggedIn,
+        logOut,
+        credentialSingUp,
+        credentialsLogin,
+        googleLogin
     }}>
         {children}
     </UserContext.Provider>

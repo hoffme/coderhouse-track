@@ -1,35 +1,25 @@
-import './style.scss';
+import { useContext } from 'react';
+import { Redirect, Route, Switch, useHistory} from 'react-router-dom';
 
-import { Redirect, Route, Switch} from 'react-router-dom';
+import UserContext from '../../contexts/user';
 
 import Header from '../../components/header';
 
-import { useContext } from 'react';
-import UserContext from '../../contexts/user';
-import UserLogin from '../../components/user/login';
-import UserSingUp from '../../components/user/sing-up';
+import './style.scss';
 
 const UserPage = ({match}) => {
-    const { user } = useContext(UserContext);
+    const { loggedIn } = useContext(UserContext);
+    const history = useHistory();
 
-    return <>
-        <Switch>
-            <Redirect exact path={match.url} to={match.url + "info"}></Redirect>
-            <Route path={match.url + "/login"} component={UserLogin} />
-            <Route path={match.url + "/register"} component={UserSingUp} />
-            <Route path={match.url + "/restore"} >
-                <h1>restore Page</h1>
-            </Route>
-            <Route path={match.url + "/info"} >{
-                user ?
-                    <>
-                        <Header />
-                        <h1>Info Page</h1>
-                    </> :
-                    <Redirect to={match.url + "/login"} />
-            }</Route>
-        </Switch>
-    </>;
+    if (!loggedIn) history.push('/');
+
+    return <Switch>
+        <Redirect exact path={match.url} to={match.url + "info"}></Redirect>
+        <Route path={match.url + "/info"} >
+            <Header />
+            <h1>Info Page</h1>
+        </Route>
+    </Switch>;
 }
 
 export default UserPage;

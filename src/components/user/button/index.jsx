@@ -1,18 +1,24 @@
-import './style.scss';
+import { useContext } from 'react';
 
-import { Link } from 'react-router-dom';
+import UserContext from '../../../contexts/user';
 
 import WindowButton from '../../windowButton';
 
+import UserWindowInfo from '../windowInfo';
+import UserWindowLogin from '../windowLogin';
+
 import userIcon from '../../../assets/icons/usuario.svg';
 
+import './style.scss';
+
 const UserButton = () => {
+    const {loggedIn} = useContext(UserContext);
+
     return <WindowButton
         className={"button-user"}
         contentButton={<img src={userIcon} alt={"icon user"} />}
     >
-        <h3>Usuario</h3>
-        <Link to={"/user/"}>Info</Link>
+        { loggedIn ? <UserWindowInfo /> : <UserWindowLogin /> }
     </WindowButton>;
 }
 
