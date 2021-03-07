@@ -31,7 +31,7 @@ const UserProvider = ({ children }) => {
         newBuys[data.id] = { ...userBuy, id: data.id };
         setBuys(newBuys);
 
-        return data.id;
+        return newBuys[data.id];
     }
     
     const getBuy = id => buys[id];

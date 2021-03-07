@@ -18,12 +18,12 @@ const ButtonBuy = ({onFinishBuy}) => {
     }
 
     if (message) {
-        return <button className={"button-buy message"}>{message}</button>;
+        return <button className={"buttom-buy message"}>{message}</button>;
     }
 
     return <button onClick={() =>{
         buy()
-            .then(id => onFinishBuy(user.getBuy(id)))
+            .then(data => onFinishBuy(data))
             .catch(err => showMessage(err.message));
     }} className={"buttom-buy"}>
         Finalizar Compra

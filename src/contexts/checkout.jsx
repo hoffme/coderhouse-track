@@ -57,11 +57,11 @@ const CheckOutProvider = ({ children }) => {
             })
         }
 
-        const buyId = await user.addBuy(buy);
+        const buyUser = await user.addBuy(buy);
 
         clear();
         
-        return buyId;
+        return buyUser;
     };
 
     const clear = () => {

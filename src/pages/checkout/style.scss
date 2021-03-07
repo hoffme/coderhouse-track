@@ -27,6 +27,32 @@
     }
 }
 
+.buy-finish {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+
+    h2 {
+        font-size: 3em;
+        margin: 10vh 0;
+    }
+
+    button {
+        max-width: 300px;
+        margin: 0.5rem;
+        padding: 1rem;
+        background-color: darkorange;
+        color: white;
+        font-weight: bold;
+        font-size: 1.1em;
+        border-radius: 5px;
+        border: none;
+        box-shadow: 1px 1px 3px #aaa;
+    }
+}
+
 @media (max-width: $display-mid-min + ($app-margin * 2)) {
     .checkout-page {
         display: flex;

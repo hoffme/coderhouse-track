@@ -19,7 +19,7 @@ const CheckOutPage = () => {
     }
 
     if (buy) {
-        return <div className={"app-width"}>
+        return <div className={"buy-finish app-width"}>
             <h2>Gracias Por la compra :)</h2>
             <button onClick={abrirOrden}>Ver Orden</button>
         </div>;
@@ -30,7 +30,7 @@ const CheckOutPage = () => {
         <CartDelivery />
         <CartPayment />
         <Amounts />
-        <ButtonBuy onFinishBuy={() => setBuy(buy)} />
+        <ButtonBuy onFinishBuy={newBuy => setBuy(newBuy)} />
     </div>
 }
 
