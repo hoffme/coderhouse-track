@@ -4,7 +4,10 @@
     display: flex;
     flex-direction: column;
 
-    .user-section { padding: 1rem; }
+    .user-section {
+        padding: 1rem;
+        flex: 1;
+    }
 }
 
 @media (min-width: $display-mid-min + ($app-margin * 2)) {

@@ -1,0 +1,23 @@
+.order-list {
+    display: flex;
+    flex-direction: column;
+
+    .order-list-card {
+        margin: 0.5rem 0;
+        padding: 1rem;
+        border-radius: 1rem;
+        box-shadow: 1px 1px 3px #aaa;
+        text-decoration: none;
+        color: black;
+        display: grid;
+        grid-template-areas:    "id id precio"
+                                "creado entrega entrega ";
+        grid-template-columns: auto calc(50% - 100px) 100px;
+        grid-template-rows: repeat(2, 2rem);
+
+        .id { grid-area: id }
+        .price { grid-area: precio }
+        .created { grid-area: creado }
+        .delivery { grid-area: entrega }
+    }
+}

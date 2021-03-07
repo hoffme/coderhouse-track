@@ -1,0 +1,32 @@
+.order-detail {
+    display: flex;
+    flex-direction: column;
+
+    .card {
+        margin: 0.5rem 0;
+        padding: 1rem;
+        border-radius: 1rem;
+        box-shadow: 1px 1px 3px #aaa;
+        text-decoration: none;
+        color: black;
+        display: flex;
+        flex-direction: column;
+
+        h3 { margin: 1rem 0; }
+    
+        label, b {
+            font-size: 0.9em;
+            margin: 0.5rem 0;
+        }
+
+        .row {
+            display: flex;
+            flex-direction: row;
+
+            .item-count, .item-discount, .item-amount {
+                flex-basis: 10%;
+            }
+            .item-title { flex: 1 }
+        }
+    }
+}

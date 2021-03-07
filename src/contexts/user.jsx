@@ -19,6 +19,8 @@ const UserProvider = ({ children }) => {
         return data.id;
     }
 
+    const getAddress = id => address.find(addr => addr.id === id);
+
     const addBuy = async buy => {
         const userBuy = {...buy, user_id: user.uid }
         
@@ -38,8 +40,6 @@ const UserProvider = ({ children }) => {
         setLoading(true);
         
         getAuth().onAuthStateChanged(async (user) => {
-            setLoading(true);
-
             setUser(user);
 
             if (!user) return;
@@ -60,14 +60,14 @@ const UserProvider = ({ children }) => {
                 .where("user_id", "==", user.uid)
                 .get();
             if (snapshotBuys) {
-                const buys = {};
-                snapshotBuys.docs.forEach(doc => buys[doc.id] = { id: doc.id, ...doc.data() })
-                setBuys(buys);
+                const newBuys = {};
+                snapshotBuys.docs.forEach(doc => newBuys[doc.id] = { id: doc.id, ...doc.data() })
+                setBuys(newBuys);
             }
 
                 
             setLoading(false);
-        });
+        })
 
         return () => {}
     }, []);
@@ -105,6 +105,7 @@ const UserProvider = ({ children }) => {
         addBuy,
         getBuy,
         address,
+        getAddress,
         addAddress,
         loggedIn,
         logOut,

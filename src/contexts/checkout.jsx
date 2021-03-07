@@ -49,6 +49,7 @@ const CheckOutProvider = ({ children }) => {
             items: cart.items.map(item => {
                 return {
                     itemId: item.item.id,
+                    title: item.item.title,
                     count: item.quantity,
                     price: item.item.price,
                     discount: item.item.discount,
