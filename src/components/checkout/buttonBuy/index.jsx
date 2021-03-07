@@ -17,17 +17,15 @@ const ButtonBuy = ({onFinishBuy}) => {
         }, 5000);
     }
 
-    const actionBuy = () => {
-        buy()
-            .then(id => onFinishBuy(user.getBuy(id)))
-            .catch(err => showMessage(err.message));
-    }
-
     if (message) {
         return <button className={"button-buy message"}>{message}</button>;
     }
 
-    return <button onClick={actionBuy} className={"buttom-buy"}>
+    return <button onClick={() =>{
+        buy()
+            .then(id => onFinishBuy(user.getBuy(id)))
+            .catch(err => showMessage(err.message));
+    }} className={"buttom-buy"}>
         Finalizar Compra
     </button>
 }
