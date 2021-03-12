@@ -1,27 +1,40 @@
-import { createElement } from 'react';
+import { createElement, lazy, Suspense, useContext } from 'react';
+
+import SettingsContext from '../../contexts/settings';
 
 import './style.css';
 
-import Slider from 'components/slider';
-
 const ManagmentUI = ({structure = []}) => {
-    const components = {
-        'slider': Slider
-    }
+    const { loading, settings } = useContext(SettingsContext);
+    const managmentUISettings = settings?.managment_ui;
 
-    return structure.reduce((result, data, index) => {
-        if (data.type in components) {
-            const props = { key: `manui-${data.type}-${index}` };
-            
-            Object.entries(data.settings).forEach(([name, value]) => {
-                props[name] = value;
-            })
+    if (loading) return <label>Loading ...</label>;
 
-            return createElement(components[data.type], props)
+    const components = managmentUISettings.components.reduce((result, data) => {
+        try {
+            const component = lazy(() => import('../../' + data.import));
+            result[data.type] = component;
+        } catch (err) { console.error(err) }
+        finally { return result }
+    }, {})
+
+    return <Suspense fallback={<label>Loading ...</label>}>
+        {
+            structure.reduce((result, data, index) => {
+                if (data.type in components) {
+                    const props = { key: `manui-${data.type}-${index}` };
+                    
+                    Object.entries(data.settings).forEach(([name, value]) => {
+                        props[name] = value;
+                    })
+        
+                    return createElement(components[data.type], props)
+                }
+        
+                return result;
+            }, [])
         }
-
-        return result;
-    }, []);
+    </Suspense>
 }
 
 export default ManagmentUI;
