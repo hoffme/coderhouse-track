@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 import './style.scss';
 
+import dateFormat from '../../../utils/dateFormat';
+
 const OrderList = ({orders}) => {
 
     const amount = order => {
@@ -8,15 +10,6 @@ const OrderList = ({orders}) => {
             total += (item.price * item.count) - item.discount;
             return total;
         }, 0);
-    }
-
-    const dateFormat = date => {
-        const year = date.getFullYear();
-        const mont = (date.getMonth() < 9 ? '0' : '') + (date.getMonth() + 1);
-        const day = (date.getDay() < 10 ? '0' : '') + date.getDay();
-        const hour = (date.getHours() < 10 ? '0' : '') + date.getHours();
-        const minutes = (date.getMinutes() < 10 ? '0' : '') + date.getMinutes();
-        return year + '/' + mont + '/' + day + ' ' + hour + ':' + minutes;
     }
 
     if (!orders) return <label>Loading ...</label>;

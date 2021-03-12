@@ -4,6 +4,9 @@ import UserContext from '../../../contexts/user';
 
 import './style.scss';
 
+import dateFormat from '../../../utils/dateFormat';
+import addressFormat from '../../../utils/addressFormat';
+
 const OrderDetail = ({orderId}) => {
     const {loading, getBuy, getAddress} = useContext(UserContext);
 
@@ -16,22 +19,6 @@ const OrderDetail = ({orderId}) => {
             r.total += (item.price * item.count) - item.discount;
             return r;
         }, {total: 0, amount: 0, discount: 0});
-    }
-
-    const dateFormat = date => {
-        const year = date.getFullYear();
-        const mont = (date.getMonth() < 9 ? '0' : '') + (date.getMonth() + 1);
-        const day = (date.getDay() < 10 ? '0' : '') + date.getDay();
-        const hour = (date.getHours() < 10 ? '0' : '') + date.getHours();
-        const minutes = (date.getMinutes() < 10 ? '0' : '') + date.getMinutes();
-        return year + '/' + mont + '/' + day + ' ' + hour + ':' + minutes;
-    }
-
-    const addressFormat = address => {
-        return  address.city + ', ' + 
-                address.address + ' ' + 
-                address.height + ' ' + 
-                (address.deptoNumber ? address.deptoNumber : '');
     }
 
     if (loading) return <label>Loading ...</label>;
@@ -50,8 +37,8 @@ const OrderDetail = ({orderId}) => {
                 return <div className={"row"} key={index}>
                     <label className={'item-count'}>{item.count}</label>
                     <label className={'item-title'}>{item.title}</label>
-                    <label className={'item-discount'}>-$ {item.discount}</label>
-                    <b className={'item-amount'}>$ {(item.count * item.count) - item.discount}</b>
+                    <label className={'item-price'}>$ {item.price}</label>
+                    <b className={'item-amount'}>$ {(item.price * item.count) - item.discount}</b>
                 </div>
             })}
         </div>

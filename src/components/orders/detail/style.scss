@@ -23,7 +23,7 @@
             display: flex;
             flex-direction: row;
 
-            .item-count, .item-discount, .item-amount {
+            .item-count, .item-price, .item-amount {
                 flex-basis: 10%;
             }
             .item-title { flex: 1 }
