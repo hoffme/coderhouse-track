@@ -1,26 +1,30 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 
 import "./style.scss";
 
 const Slider = ({images = [], time = 5}) => {
     const [imgShowing, setImgShowing] = useState(images[0]);
-    const [time] = useState(time);
+    const [timeNext] = useState(time);
 
     const back = () => {
-        const actualIndex = images.indexOf(imgShowing);
+        let actualIndex = images.indexOf(imgShowing);
         if (actualIndex <= 0) actualIndex = images.length;
         setImgShowing(images[actualIndex - 1]);
     }
 
-    const next = () => {
-        const actualIndex = images.indexOf(imgShowing);
-        setImgShowing(images[actualIndex + 1]);
-    }
+    const next = useCallback(
+        () => {
+            let actualIndex = images.indexOf(imgShowing);
+            if (actualIndex >= images.length - 1) actualIndex = -1;
+            setImgShowing(images[actualIndex + 1]);
+        },
+        [images, imgShowing, setImgShowing]
+    )
 
     useEffect(() => {
-        const interval = setInterval(next, time);
+        const interval = setInterval(next, timeNext * 1000);
         return () => clearInterval(interval);
-    }, [time, next]);
+    }, [timeNext, next]);
 
     return <div className={"slider"}>
         <button
@@ -31,7 +35,7 @@ const Slider = ({images = [], time = 5}) => {
             className={"button-next"}
             onClick={next}
         >{">"}</button>
-        <img src={imgShowing.url} alt={imgShowing.alt} />
+        <img src={imgShowing.src} alt={imgShowing.alt} />
     </div>;
 }
 

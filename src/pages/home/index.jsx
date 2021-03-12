@@ -3,8 +3,7 @@ import SettingsContext from '../../contexts/settings';
 
 import './style.scss';
 
-import NavBar from '../../components/navBar';
-import ProductListContainer from '../../components/product/listContainer';
+import ManagmentUI from '../../components/managmentUI';
 
 const HomePage = () => {
     const { loading, settings } = useContext(SettingsContext);
@@ -14,10 +13,7 @@ const HomePage = () => {
         return <label>loading ...</label>
     }
 
-    return <>
-        <NavBar />
-        <ProductListContainer title={"Novedades"} />
-    </>
+    return <ManagmentUI structure={homeSettings.structure} />
 }
 
 export default HomePage;
