@@ -11,7 +11,7 @@ const UserLogin = ({onSingUp, onRecover, onMessage}) => {
 
     const login = () => {
         credentialsLogin(email, password)
-            .catch(err => onMessage(err.code));
+            .catch(err => onMessage(err));
     }
 
     return <div className={"section"}>

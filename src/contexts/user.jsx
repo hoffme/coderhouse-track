@@ -1,5 +1,6 @@
 import { useEffect, useState, createContext } from "react";
 import { getAuth, getFirestore, googleAuthProvider } from '../firebase';
+import emailValidator from '../utils/emailValidator';
 
 const UserContext = createContext();
 
@@ -76,6 +77,16 @@ const UserProvider = ({ children }) => {
 
     const credentialSingUp = (fullName, email, password) => {
         return new Promise((resolve, reject) => {
+            if (!fullName || fullName.length < 3) {
+                throw new Error('Nombre invalido');
+            }
+            if (!email || !emailValidator(email)) {
+                throw new Error('Email invalido');
+            }
+            if (!password || password.length < 8) {
+                throw new Error('Contraseña invalida, minimo 8 caracteres');
+            }
+        
             getAuth().createUserWithEmailAndPassword(email, password)
                 .then(() => {
                     getAuth()
@@ -91,7 +102,20 @@ const UserProvider = ({ children }) => {
     const socialLogin = (provider) => getAuth().signInWithPopup(provider);
 
     const credentialsLogin = (email, password) => {
-        return getAuth().signInWithEmailAndPassword(email, password);
+        return new Promise((resolve, reject) => {
+            if (!email || !emailValidator(email)) {
+                reject('Email invalido');
+                return;
+            }
+            if (!password || password.length < 8) {
+                reject('Contraseña invalida, minimo 8 caracteres');
+                return;
+            }
+        
+            getAuth().signInWithEmailAndPassword(email, password)
+                .then(resolve)
+                .catch(reject);        
+        })
     }
 
     const logOut = () => getAuth().signOut();
