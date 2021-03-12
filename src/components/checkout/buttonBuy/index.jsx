@@ -5,7 +5,7 @@ import CheckOutContext from '../../../contexts/checkout';
 import './style.scss';
 
 const ButtonBuy = ({onFinishBuy}) => {
-    const {user, buy} = useContext(CheckOutContext);
+    const {buy} = useContext(CheckOutContext);
 
     const [message, setMessage] = useState(null);
 

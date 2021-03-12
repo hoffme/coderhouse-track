@@ -10,7 +10,7 @@ const UserWindowLogin = () => {
     const [section, setSection] = useState('login');
     const [message, setMessage] = useState(null);
 
-    const showMessage = (message, time) => {
+    const showMessage = (message, time = 5000) => {
         setMessage(message);
 
         new Promise(resolve => {
@@ -21,26 +21,29 @@ const UserWindowLogin = () => {
         }).then(t => clearTimeout(t));
     }
 
-    const viewSection = () => {
-        switch (section) {
-            case 'singup': return <UserSingUp
-                onMessage={showMessage} 
-                onLogin={() => setSection('login')}
-            />;
-            case 'recover': return <UserRecover
-                onMessage={showMessage} 
-                onLogin={() => setSection('login')}
-            />;
-            default: return <UserLogin
-                onMessage={showMessage} 
-                onRecover={() => setSection('recover')}
-                onSingUp={() => setSection('singup')}
-            />;
-        }
-    }
-
     return <div className={"window-login"}>
-        { viewSection() }
+        {
+            (section === 'singup') &&
+                <UserSingUp 
+                    onMessage={showMessage} 
+                    onLogin={() => setSection('login')}
+                />
+        }
+        {
+            (section === 'recover') &&
+                <UserRecover
+                    onMessage={showMessage} 
+                    onLogin={() => setSection('login')}
+                />
+        }
+        {
+            (section === 'login') &&
+                <UserLogin
+                    onMessage={showMessage} 
+                    onRecover={() => setSection('recover')}
+                    onSingUp={() => setSection('singup')}
+                />
+        }
         { message && <div className={"message"}>{message}</div> }
     </div>
 }

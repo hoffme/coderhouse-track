@@ -98,6 +98,8 @@ const UserProvider = ({ children }) => {
 
     const googleLogin = () => socialLogin(googleAuthProvider);
 
+    const recoverEmail = email => getAuth().sendPasswordResetEmail(email);
+
     return <UserContext.Provider value={{
         loading,
         user,
@@ -111,7 +113,8 @@ const UserProvider = ({ children }) => {
         logOut,
         credentialSingUp,
         credentialsLogin,
-        googleLogin
+        googleLogin,
+        recoverEmail
     }}>
         {children}
     </UserContext.Provider>
