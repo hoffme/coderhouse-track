@@ -19,7 +19,7 @@ const ManagmentUI = ({structure = []}) => {
                         props[name] = value;
                     })
         
-                    return createElement(components[data.type], props)
+                    result.push(createElement(components[data.type], props));
                 }
         
                 return result;
