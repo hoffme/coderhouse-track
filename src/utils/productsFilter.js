@@ -10,7 +10,8 @@ const productsFilter = (products, filter) => {
     };
 
     return products.filter(product => onlyTrue(
-        filter.category && product.category === filter.category.id,
+        filter.category && filter.category.url_id && product.category.url_id === filter.category.url_id,
+        filter.category && filter.category.id && product.category.id === filter.category.id,
         filter.id && product.id === filter.id,
         filter.url && product.url === filter.url,
         filter.query && onlyTrue(

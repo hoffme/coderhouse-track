@@ -9,7 +9,7 @@ const SearchPage = () => {
     const { query } = useParams('query');
 
     const filter = {};
-    if (categoryId) filter.category = { id: categoryId };
+    if (categoryId) filter.category = { url_id: categoryId };
     if (query) filter.query = query;
 
     return <>
