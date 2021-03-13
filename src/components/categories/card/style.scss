@@ -1,0 +1,25 @@
+.category-card {
+    text-decoration: none;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+
+    img {
+        width: 80%;
+        margin: 10%;
+    }
+
+    .title {
+        flex: 1;
+        color: black;
+        width: 90%;
+        margin: auto;
+        font-size: 1.25em;
+        text-align: center;
+        padding: 1rem 0;
+    }
+}
+.category-card:hover { box-shadow: 1px 1px 5px #ccc }

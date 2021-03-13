@@ -15,7 +15,7 @@ const productsFilter = (products, filter) => {
         filter.url && product.url === filter.url,
         filter.query && onlyTrue(
             simple(product.title).includes(simple(filter.query)),
-            simple(product.category).includes(simple(filter.query)),
+            simple(product.category.title).includes(simple(filter.query)),
         )
     ))
 }
