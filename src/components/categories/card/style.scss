@@ -1,25 +1,63 @@
 .category-card {
-    text-decoration: none;
-    border-radius: 5px;
-    border: 1px solid #ddd;
-    background-color: transparent;
     display: flex;
     flex-direction: column;
-    padding: 0;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
 
-    img {
-        width: 80%;
-        margin: 10%;
-    }
+    .icon { padding: 1rem }
 
     .title {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         flex: 1;
         color: black;
-        width: 90%;
-        margin: auto;
-        font-size: 1.25em;
         text-align: center;
-        padding: 1rem 0;
     }
+
+    &.frame-card {
+        box-shadow: 1px 1px 3px #ccc;
+        background-color: white;
+    }
+    &.frame-border {
+        border: 1px solid #ddd;
+        background-color: white;
+    }
+    &.frame-botomless {
+        background-color: transparent;
+    }
+
+    &.size-small {
+        width: 4rem;
+        max-height: 4rem;
+
+        .title { font-size: 0.9em }
+        .icon { width: 2rem }
+    }
+    &.size-medium {
+        width: 5rem;
+        max-height: 5rem;
+
+        .title { font-size: 1em }
+        .icon { width: 3rem }
+    }
+    &.size-big {
+        width: 6rem;
+        max-height: 6rem;
+
+        .title { font-size: 1.1em }
+        .icon { width: 4rem }
+    }
+
+    &.form-square .icon, &.form-rounded-square {
+        .title { padding: 0.5rem 1rem; }
+        .icon { display: none }
+    }
+    &.form-circle {
+        border-radius: 50%;
+
+        .title { display: none }
+    }
+    &.form-rounded-square { border-radius: 5px }
 }
-.category-card:hover { box-shadow: 1px 1px 5px #ccc }

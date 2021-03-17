@@ -6,7 +6,7 @@ import CategoryContext from '../../../contexts/category';
 
 import CategoryList from '../list';
 
-const CategoryListContainer = ({ title, filters}) => {
+const CategoryListContainer = ({ title, filters, settings_list, settings_item}) => {
     const {loading, searchCategories} = useContext(CategoryContext);
     const [categories, setCategories] = useState([]);
 
@@ -27,7 +27,11 @@ const CategoryListContainer = ({ title, filters}) => {
         {
             (loading) ?
                 <label>Loading ...</label> :
-                <CategoryList categories={categories} />
+                <CategoryList
+                    categories={categories}    
+                    settings={settings_list}
+                    settingsItem={settings_item}
+                />
         }
     </div>;
 }
