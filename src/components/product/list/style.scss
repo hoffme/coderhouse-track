@@ -1,21 +1,33 @@
-@import '../../../sass/vars';
-
 .product-list {
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    overflow: hidden;
     justify-content: center;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
 
-    .product-card {
-        margin: 0.5rem;
-        width: calc(100% - 1rem);
+    &.frame-card {
+        box-shadow: 1px 1px 3px #ccc;
+        background-color: white;
     }
-}
+    &.frame-border {
+        border: 1px solid #ddd;
+        background-color: white;
+    }
+    &.frame-botomless {
+        background-color: transparent;
+    }
 
-@media (min-width: $display-mid-min) {
-    .product-list .product-card { width: calc(33% - 1rem) }
-}
-
-@media (min-width: $display-big-min) {
-    .product-list .product-card { width: calc(25% - 1.25rem) }
+    &.desing-horizontal {
+        overflow-x: auto;
+        flex-direction: row;        
+        .product-card { margin: 0 0.5rem }
+    }
+    &.desing-vertical {
+        overflow-y: auto;
+        flex-direction: column;
+        .product-card { margin: 0.5rem 0 }
+    }
+    &.desing-grid {
+        background-color: transparent;
+    }
 }

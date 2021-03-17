@@ -6,7 +6,7 @@ import ProductsContext from '../../../contexts/products';
 
 import ProductList from '../list';
 
-const ProductListContainer = ({ title, filters}) => {
+const ProductListContainer = ({ title, filters, settings_list, settings_item}) => {
     const {loading, searchProducts} = useContext(ProductsContext);
     const [products, setProducts] = useState([]);
 
@@ -27,7 +27,11 @@ const ProductListContainer = ({ title, filters}) => {
         {
             (loading) ?
                 <label>Loading ...</label> :
-                <ProductList products={products} />
+                <ProductList
+                    products={products}
+                    settings={settings_list}
+                    settingsItem={settings_item}
+                />
         }
     </div>;
 }

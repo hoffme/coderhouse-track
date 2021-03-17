@@ -1,36 +1,100 @@
 .product-card {
     text-decoration: none;
+    display: grid;
+    padding: 1rem;
     border-radius: 5px;
-    border: 1px solid #ddd;
-    background-color: transparent;
-    display: flex;
-    flex-direction: column;
-    padding: 0;
-
-    img {
-        width: 80%;
-        margin: 10%;
-    }
 
     .title {
-        flex: 1;
+        grid-area: title; 
+    }
+    .price {
+        grid-area: price;
         color: black;
-        width: 90%;
-        margin: auto;
-        font-size: 1.25em;
-        text-align: center;
-        padding: 1rem 0;
+        margin: 0.5rem 0;
+    }
+    .image {
+        grid-area: imagen;
+        margin: 0 auto;
     }
 
-    .price {
-        flex-basis: 1rem;
-        width: 100%;
-        text-align: center;
-        font-size: 1.25em;
-        background-color: darkorange;
-        color: white;
-        padding: 0.5rem 0;
-        border-radius: 0 0 5px 5px;
+    &.frame-card {
+        box-shadow: 1px 1px 5px #ccc;
+        background-color: white;
+    }
+    &.frame-border {
+        border: 1px solid #ddd;
+        background-color: white;
+    }
+    &.frame-botomless {
+        background-color: transparent;
+    }
+
+    &.size-small {
+        .image { width: 4rem }
+        .price { font-size: 1.25em }
+        .title {
+            font-size: 0.8em;
+            max-width: 4rem;
+            max-height: 2.4em;
+        }
+    }
+    &.size-medium {
+        .image { width: 8rem }
+        .price { font-size: 1.5em }
+        .title {
+            font-size: 0.9em;
+            max-width: 8rem;
+            max-height: 4.5em;
+        }
+    }
+    &.size-big {
+        .image { width: 12rem }
+        .price { font-size: 1.75em }
+        .title {
+            font-size: 1em;
+            max-width: 12rem;
+            max-height: 6rem;
+        }
+    }
+
+    &.direction-vertical {
+        grid-template-areas: "imagen" "price" "title";
+        grid-template-columns: repetar(3, auto);
+
+        .title {
+            color: #999;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical; 
+        }
+    }
+    &.direction-horizontal {
+        grid-template-areas: "imagen title" "imagen price";
+
+        .title { color: black }
+        
+        &.size-small {
+            grid-template-columns: 4rem auto;
+            .title {
+                max-width: calc(100% - 4rem);
+                font-size: 1em;
+            }
+        }
+        &.size-medium {
+            grid-template-columns: 8rem auto;
+            .title {
+                max-width: calc(100% - 8rem);
+                font-size: 1.25em;
+            }
+        }
+        &.size-big {
+            grid-template-columns: 12rem auto;
+            .title {
+                max-width: calc(100% - 12rem);
+                font-size: 1.5em;
+            }
+        }
     }
 }
-.item:hover { box-shadow: 1px 1px 5px #ccc }
