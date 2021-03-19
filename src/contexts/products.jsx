@@ -9,14 +9,15 @@ import productsFilter from "../utils/productsFilter";
 const ProductsContext = createContext();
 
 const ProductsProvider = ({children}) => {
-    const {loadingCategories, findCategory} = useContext(CategoryContext);
+    const {loading, findCategory} = useContext(CategoryContext);
+    const categoriesLoading = loading;
     
     const [products, setProducts] = useState({});
-    const [loading, setLoading] = useState(true);
+    const [loadingProducts, setLoading] = useState(true);
     const [collection] = useState(getFirestore().collection('products'));
 
     useEffect(() => {
-        if (loadingCategories) return;
+        if (categoriesLoading) return;
 
         collection
             .where("show", "==", true)
@@ -35,7 +36,7 @@ const ProductsProvider = ({children}) => {
             });
 
         return () => {}
-    }, [loadingCategories, findCategory, collection])
+    }, [categoriesLoading, findCategory, collection])
 
     const getProduct = async (productId) => {
         const doc = await collection
@@ -62,7 +63,7 @@ const ProductsProvider = ({children}) => {
 
     return <ProductsContext.Provider value={{
         products: Object.values(products),
-        loading,
+        loading: loadingProducts,
         getProduct,
         searchProducts
     }}>
