@@ -29,23 +29,14 @@
     }
 
     &.size-small {
-        width: 4rem;
-        max-height: 4rem;
-
         .title { font-size: 0.9em }
         .icon { width: 2rem }
     }
     &.size-medium {
-        width: 5rem;
-        max-height: 5rem;
-
         .title { font-size: 1em }
         .icon { width: 3rem }
     }
     &.size-big {
-        width: 6rem;
-        max-height: 6rem;
-
         .title { font-size: 1.1em }
         .icon { width: 4rem }
     }
@@ -58,6 +49,10 @@
         border-radius: 50%;
 
         .title { display: none }
+
+        &.size-small { width: 4rem }
+        &.size-medium { width: 5rem }
+        &.size-big { width: 6rem }
     }
     &.form-rounded-square { border-radius: 5px }
 }

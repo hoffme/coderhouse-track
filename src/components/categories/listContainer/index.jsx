@@ -23,7 +23,7 @@ const CategoryListContainer = ({ title, filters, settings_list, settings_item}) 
     }, [loading, searchCategories, setCategories, filters])
 
     return <div className={"category-list-container app-width"}>
-        <h2>{ title }</h2>
+        { title && <h2>{ title }</h2> }
         {
             (loading) ?
                 <label>Loading ...</label> :

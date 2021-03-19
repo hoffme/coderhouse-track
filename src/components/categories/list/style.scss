@@ -1,9 +1,11 @@
 .category-list {
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
     padding: 0.5rem;
     border-radius: 0.5rem;
+    overflow: hidden;
+
+    .category-card { margin: 0.5rem }
 
     &.frame-card {
         box-shadow: 1px 1px 3px #ccc;
@@ -19,13 +21,14 @@
 
     &.desing-horizontal {
         flex-direction: row;        
-        .category-card { margin: 0 0.5rem }
+        overflow-x: auto;
     }
     &.desing-vertical {
         flex-direction: column;
-        .category-card { margin: 0.5rem 0 }
+        overflow-y: auto;
     }
     &.desing-grid {
         background-color: transparent;
+        flex-wrap: wrap;
     }
 }
