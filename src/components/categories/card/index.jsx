@@ -17,7 +17,14 @@ const CategoryCard = ({ category, settings = {} }) => {
     const style = `category-card frame-${settings.frame} size-${settings.size} form-${settings.form}`;
 
     return <Link className={style} to={'/category/' + category.url_id}>
-        <img className={"icon"} src={ category.icon } alt={`icono categoria ${category.title}`} />
+        {
+            (settings.form === 'circle') && 
+                <img
+                    className={"icon"}
+                    src={ category.icon }
+                    alt={`icono categoria ${category.title}`}
+                />
+        }
         <label className={"title"}>{ category.title }</label>
     </Link>;
 }
