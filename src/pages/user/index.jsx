@@ -11,38 +11,40 @@ import './style.scss';
 import OrderDetail from '../../components/orders/detail';
 
 const SectionInfo = () => {
-    const { loading, user } = useContext(UserContext);
-    
-    if (loading) return <label>Loading ...</label>;
+    const { user } = useContext(UserContext);
     
     return <>
-        <h2>Mis Datos</h2>
-        <InputField
-            title={"Nombre Completo"}
-            value={user ? user.displayName : ''}
-            onChange={console.log}
-        />
+        <h2 className={"title"}>Mis Datos</h2>
+        <div className={"content"}>
+            <InputField
+                title={"Nombre Completo"}
+                value={user ? user.displayName : ''}
+                onChange={console.log}
+            />
+        </div>
     </>
 }
 
 const SectionOrders = () => {
-    const { loading, buys } = useContext(UserContext);
-    
-    if (loading) return <label>Loading ...</label>;
+    const { buys } = useContext(UserContext);
     
     return <>
-        <h2>Ordenes</h2>
-        <OrderList orders={buys} />
+        <h2 className={"title"}>Ordenes</h2>
+        <div className={"content"}>
+           <OrderList orders={buys} />
+        </div>
     </>
 }
 
 const SectionOrder = () => {
-    const { loading } = useContext(UserContext);
     const { orderId } = useParams('orderId');
-
-    if (loading) return <label>Loading ...</label>;
     
-    return <OrderDetail orderId={orderId} />;
+    return <>
+        <h2 className={"title"}>Detalle de Orden</h2>
+        <div className={"content"}>
+            <OrderDetail orderId={orderId} />
+        </div>
+    </>
 }
 
 const UserPage = ({match}) => {
