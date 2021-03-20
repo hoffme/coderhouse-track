@@ -5,12 +5,15 @@ import CartContext from '../../../contexts/cart';
 
 import './style.scss';
 
-const ButtonCheckout = () => {
+const ButtonCheckout = ({ onClick }) => {
     const {isEmpty} = useContext(CartContext);
     const history = useHistory();
 
     return <button
-        onClick={() => !isEmpty() && history.push('/checkout/')}
+        onClick={e => {
+            history.push('/checkout/');
+            onClick(e);
+        }}
         className={"button-checkout"}
         disabled={isEmpty()}
     >

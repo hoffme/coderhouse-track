@@ -1,22 +1,28 @@
-import { Link } from 'react-router-dom';
 import { useContext } from 'react';
+import { useHistory } from 'react-router';
 
 import UserContext from '../../../contexts/user';
 
 import './style.scss';
 
-const UserControl = () => {
+const UserControl = ({ onChange = () => {} }) => {
     const {loggedIn, loading, user, logOut} = useContext(UserContext);
+    const history = useHistory();
 
     if (loading) return <label>Loading ...</label>;
 
     if (!loggedIn) return <></>;
 
+    const onClick = (e, to) => {
+        history.push(to);
+        onChange(e, to);
+    } 
+
     return <div className={"user-control"}>
         <h3>{user.displayName}</h3>
         <nav>
-            <li><Link to={"/user/info"}>Mis Datos</Link></li>
-            <li><Link to={"/user/orders"}>Ordenes</Link></li>
+            <li><button onClick={e => onClick(e, "/user/info")}>Mis Datos</button></li>
+            <li><button onClick={e => onClick(e, "/user/orders")}>Ordenes</button></li>
             <li><button onClick={() => logOut()}>Salir</button></li>
         </nav>
     </div>
