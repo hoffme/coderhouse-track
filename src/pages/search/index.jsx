@@ -3,6 +3,7 @@ import './style.scss';
 import { useParams } from 'react-router-dom';
 
 import ProductListContainer from '../../components/product/listContainer';
+import Footer from '../../components/footer';
 
 const SearchPage = () => {
     const { categoryId } = useParams('categoryId');
@@ -14,6 +15,7 @@ const SearchPage = () => {
 
     return <>
         <ProductListContainer title={"Resultados"} filters={filter} />
+        <Footer />
     </>;
 }
 
