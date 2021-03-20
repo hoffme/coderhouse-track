@@ -5,6 +5,8 @@ const onlyTrue = (...booleans) => {
 const simple = (text) => text.toLowerCase();
 
 const find = (params, product) => {
+    if (params.exclude && params.exclude.includes(product.id)) return false;
+
     return onlyTrue(
         params.category && params.category.url_id && product.category.url_id === params.category.url_id,
         params.category && params.category.id && product.category.id === params.category.id,
@@ -20,7 +22,7 @@ const find = (params, product) => {
 const restrictions = (filter) => {
     return Object.entries(filter).reduce((result, [key, value]) => {
         if (
-            key in ['url', 'id'] ||
+            ['url', 'id', 'exclude'].includes(key) ||
             (key === 'query' && value.length > 0) ||
             (key === 'category' && Object.keys(value).length > 0)
         ) result[key] = value;
