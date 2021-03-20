@@ -37,6 +37,7 @@ const ProductDetailContainer = ({ filter }) => {
                     <ProductDetailt product={product} />
                     <ProductListContainer
                         title={"Relacionados"}
+                        removeOnEmpty={true}
                         filters={{ category: product.category, exclude: [product.id] }}
                     />
                 </>                
