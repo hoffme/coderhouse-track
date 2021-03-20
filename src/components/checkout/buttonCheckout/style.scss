@@ -11,7 +11,9 @@
     font-size: 1.1em;
 
     &:disabled {
-        background-color: #ccc;
-        color:#aaa;
+        background-color: #eee;
+        color:#ccc;
+        box-shadow: none;
+        font-weight: normal;
     }
 }

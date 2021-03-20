@@ -5,7 +5,7 @@ import CartContext from '../../../contexts/cart';
 
 import './style.scss';
 
-const ButtonCheckout = ({ onClick }) => {
+const ButtonCheckout = ({ onClick = () => {} }) => {
     const {isEmpty} = useContext(CartContext);
     const history = useHistory();
 
