@@ -6,7 +6,7 @@ import ProductsContext from '../../../contexts/products';
 
 import ProductList from '../list';
 
-const ProductListContainer = ({ title, filters, settings_list, settings_item}) => {
+const ProductListContainer = ({ title, filters, settings_list, settings_item, removeOnEmpty = false}) => {
     const {loading, searchProducts} = useContext(ProductsContext);
     const [products, setProducts] = useState([]);
 
@@ -22,7 +22,11 @@ const ProductListContainer = ({ title, filters, settings_list, settings_item}) =
         return () => {}
     }, [loading, searchProducts, setProducts, filters])
 
-    return <div className={"product-list-container app-width"}>
+    let style = "product-list-container app-width";
+
+    if (!loading && removeOnEmpty && products.length === 0) style += ' product-list-container-hide';
+
+    return <div className={style}>
         <h2>{ title }</h2>
         {
             (loading) ?

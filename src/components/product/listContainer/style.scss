@@ -1,4 +1,8 @@
-.product-list-container h2 {
-    margin: 0;
-    padding: 1rem;
+.product-list-container {
+    &.product-list-container-hide { display: none }
+
+    h2 {
+        margin: 0;
+        padding: 1rem;
+    }
 }

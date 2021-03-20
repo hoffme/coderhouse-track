@@ -10,11 +10,17 @@ import "./style.scss";
     }
 */
 
-const ProductList = ({ products, settings = {}, settingsItem }) => {
+const ProductList = ({ products = [], settings = {}, settingsItem }) => {
     if (!settings.desing) settings.desing = 'horizontal';
     if (!settings.frame) settings.frame = 'botomless';
 
     const style = `product-list desing-${settings.desing} frame-${settings.frame}`;
+
+    if (products.length === 0) {
+        return <div className={style}>
+            <label className={"empty"}>No se han encontrado productos</label>
+        </div>
+    }
 
     return <div className={style}>{
         products.map((product, index) => {

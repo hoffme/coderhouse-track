@@ -5,6 +5,12 @@
     padding: 0.5rem;
     border-radius: 0.5rem;
 
+    .empty {
+        font-size: 0.9em;
+        color: #ccc;
+        padding: 1rem;
+    }
+
     &.frame-card {
         box-shadow: 1px 1px 3px #ccc;
         background-color: white;
