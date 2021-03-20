@@ -1,25 +1,24 @@
 import { useEffect, useState, useContext } from "react";
-import { useParams } from "react-router-dom";
 
 import ProductsContext from '../../../contexts/products';
 
 import ProductDetailt from "../detail";
+import ProductListContainer from "../listContainer";
 
 import "./style.scss";
 
-const ProductDetailContainer = () => {
+const ProductDetailContainer = ({ filter }) => {
     const {loading, searchProducts} = useContext(ProductsContext);
-
-    const { productUrl } = useParams('productUrl');
+    
     const [product, setProduct] = useState();
 
     useEffect(() => {
         if (loading) return;
 
-        searchProducts({url: productUrl})
+        searchProducts(filter)
             .then(products => {
                 if (products.length === 0) {
-                    throw new Error("url invalida: " + productUrl);
+                    throw new Error("url invalida: " + filter.url);
                 }
 
                 setProduct(products[0]);
@@ -29,13 +28,20 @@ const ProductDetailContainer = () => {
             });
 
         return () => {};
-    }, [loading, searchProducts, productUrl, setProduct]);
+    }, [loading, searchProducts, filter, setProduct]);
 
-    return <div className={"product-detail-container app-width"}>{
-        (product) ?
-            <ProductDetailt product={product} /> :
-            <label>Loading ...</label>
-    }</div>
+    return <div className={"product-detail-container app-width"}>
+        {
+            !product ? <label>Loading ...</label> :
+                <>
+                    <ProductDetailt product={product} />
+                    <ProductListContainer
+                        title={"Relacionados"}
+                        filters={{ category: product.category, exclude: [product.id] }}
+                    />
+                </>                
+        }
+    </div>
 }
 
 export default ProductDetailContainer;
