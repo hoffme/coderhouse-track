@@ -1,17 +1,18 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 
 import ProductsContext from './products';
 
-const defaultCart = { items: [] };
-
 const CartContext = createContext();
 
-const CartProvider = ({ cart = defaultCart, children }) => {
+const CartProvider = ({ children }) => {
     const products = useContext(ProductsContext);
 
-    const [items, setItems] = useState(cart.items.reduce((items, item) => {
-        return items[item.item.id] = item;
-    }, {}));
+    const [items, setItems] = useState(JSON.parse(sessionStorage.getItem('cart')) || {});
+
+    useEffect(() => {
+        sessionStorage.setItem('cart', JSON.stringify(items));
+        return () => {}
+    }, [items]);
 
     const addItem = (item, quantity) => {
         const newItems = {...items};
