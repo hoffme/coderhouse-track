@@ -22,11 +22,13 @@ const ProductList = ({ products = [], settings = {}, settingsItem }) => {
         </div>
     }
 
-    return <div className={style}>{
-        products.map((product, index) => {
-            return <ProductCard key={index} product={product} settings={settingsItem} />
-        })
-    }</div>;
+    return <div className={style}>
+        {
+            products.map((product, index) => {
+                return <ProductCard key={index} product={product} settings={settingsItem} />
+            })
+        }
+    </div>;
 }
 
 export default ProductList;

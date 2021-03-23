@@ -1,8 +1,29 @@
 .product-list-container {
+    position: relative;
+
     &.product-list-container-hide { display: none }
 
     h2 {
         margin: 0;
         padding: 1rem;
+        font-size: 1.5em;
+    }
+
+    .show-more {
+        position: absolute;
+        top: 50%;
+        right: 0;
+        transform: translate(-5%, -50%);
+        height: 6rem;
+        width: 6rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: darkorange;
+        color: white;
+        font-weight: bold;
+        text-decoration: none;
+        border-radius: 50%;
+        box-shadow: 1px 1px 3px #ccc;
     }
 }

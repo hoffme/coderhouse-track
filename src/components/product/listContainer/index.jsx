@@ -1,12 +1,13 @@
 import './style.scss';
 
 import { useContext, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import ProductsContext from '../../../contexts/products';
 
 import ProductList from '../list';
 
-const ProductListContainer = ({ title, filters, settings_list, settings_item, removeOnEmpty = false}) => {
+const ProductListContainer = ({ title, filters, settings_list, settings_item, removeOnEmpty = false, showMore}) => {
     const {loading, searchProducts} = useContext(ProductsContext);
     const [products, setProducts] = useState([]);
 
@@ -31,11 +32,14 @@ const ProductListContainer = ({ title, filters, settings_list, settings_item, re
         {
             (loading) ?
                 <label>Loading ...</label> :
-                <ProductList
-                    products={products}
-                    settings={settings_list}
-                    settingsItem={settings_item}
-                />
+                <>
+                    <ProductList
+                        products={products}
+                        settings={settings_list}
+                        settingsItem={settings_item}
+                    />
+                    { showMore && <Link to={showMore} className={"show-more"}>Ver Mas</Link> }
+                </>
         }
     </div>;
 }
