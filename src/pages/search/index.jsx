@@ -14,7 +14,11 @@ const SearchPage = () => {
     if (query) filter.query = query;
 
     return <>
-        <ProductListContainer title={"Resultados"} filters={filter} />
+        <ProductListContainer
+            title={"Resultados"}
+            filters={filter}
+            settings_list={{desing: 'grid'}}
+        />
         <Footer />
     </>;
 }

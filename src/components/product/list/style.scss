@@ -35,5 +35,8 @@
     }
     &.desing-grid {
         background-color: transparent;
+        flex-wrap: wrap;
+
+        .product-card { margin: 0.5rem; }
     }
 }

@@ -15,6 +15,7 @@
     .image {
         grid-area: imagen;
         margin: 0 auto;
+        object-fit: contain;
     }
 
     &.frame-card {
@@ -30,7 +31,10 @@
     }
 
     &.size-small {
-        .image { width: 4rem }
+        .image {
+            width: 4rem;
+            height: 4rem;
+        }
         .price { font-size: 1.25em }
         .title {
             font-size: 0.8em;
@@ -39,7 +43,10 @@
         }
     }
     &.size-medium {
-        .image { width: 8rem }
+        .image {
+            width: 8rem;
+            height: 8rem;
+        }
         .price { font-size: 1.5em }
         .title {
             font-size: 0.9em;
@@ -48,7 +55,10 @@
         }
     }
     &.size-big {
-        .image { width: 12rem }
+        .image {
+            width: 12rem;
+            height: 12rem;
+        }
         .price { font-size: 1.75em }
         .title {
             font-size: 1em;
