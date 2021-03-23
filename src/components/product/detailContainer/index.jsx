@@ -39,7 +39,7 @@ const ProductDetailContainer = ({ filter }) => {
                         title={"Relacionados"}
                         removeOnEmpty={true}
                         showMore={ '/category/' + product.category.url_id }
-                        filters={{ category: product.category, exclude: [product.id] }}
+                        filters={{ category: product.category, exclude: [product.id], limit: 4 }}
                     />
                 </>                
         }
