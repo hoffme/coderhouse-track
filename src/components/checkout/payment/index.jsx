@@ -11,7 +11,6 @@ const CartPayment = () => {
 
     const methodsPayment = {
         'en-puerta': { title: 'En Puerta', value: 'en-puerta' },
-        'mercado-pago': { title: 'Mercado Pago', value: 'mercado-pago' },
     }
 
     const options = [];

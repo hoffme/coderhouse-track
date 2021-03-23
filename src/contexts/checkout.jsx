@@ -30,7 +30,7 @@ const CheckOutProvider = ({ children }) => {
 
     const validPayment = () => {
         if (!payment) throw new Error("Pago: Seleccione un metodo de pago");
-        if (payment !== 'en-puerta' && payment !== 'mercado-pago') {
+        if (payment !== 'en-puerta') {
             throw new Error("Pago: Metodo de pago invalido");
         }
     }
