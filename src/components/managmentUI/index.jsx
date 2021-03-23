@@ -1,15 +1,16 @@
 import { createElement, Suspense, useContext } from 'react';
 
 import SettingsContext from '../../contexts/settings';
+import Loading from '../loading';
 
 import './style.css';
 
 const ManagmentUI = ({structure = []}) => {
     const { loading, components } = useContext(SettingsContext);
     
-    if (loading) return <label>Loading ...</label>;
+    if (loading) return <Loading />;
 
-    return <Suspense fallback={<label>Loading ...</label>}>
+    return <Suspense fallback={<Loading />}>
         {
             structure.reduce((result, data, index) => {
                 if (data.type in components) {

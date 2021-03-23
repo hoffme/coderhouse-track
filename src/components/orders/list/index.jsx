@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import './style.scss';
 
 import dateFormat from '../../../utils/dateFormat';
+import Loading from '../../loading';
 
 const OrderList = ({orders}) => {
 
@@ -12,7 +13,7 @@ const OrderList = ({orders}) => {
         }, 0);
     }
 
-    if (!orders) return <label>Loading ...</label>;
+    if (!orders) return <Loading />;
 
     return <div className={"order-list"}>{
         orders.map((order, index) => {

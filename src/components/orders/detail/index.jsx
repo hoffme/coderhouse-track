@@ -6,6 +6,7 @@ import './style.scss';
 
 import dateFormat from '../../../utils/dateFormat';
 import addressFormat from '../../../utils/addressFormat';
+import Loading from '../../loading';
 
 const OrderDetail = ({orderId}) => {
     const {loading, getBuy, getAddress} = useContext(UserContext);
@@ -21,7 +22,7 @@ const OrderDetail = ({orderId}) => {
         }, {total: 0, amount: 0, discount: 0});
     }
 
-    if (loading) return <label>Loading ...</label>;
+    if (loading) return <Loading />;
 
     return <div className={"order-detail"}>
         <div className={"card"}>

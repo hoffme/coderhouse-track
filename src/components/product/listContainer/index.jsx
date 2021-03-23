@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import ProductsContext from '../../../contexts/products';
 
 import ProductList from '../list';
+import Loading from '../../loading';
 
 const ProductListContainer = ({ title, filters, settings_list, settings_item, removeOnEmpty = false, showMore}) => {
     const {loading, searchProducts} = useContext(ProductsContext);
@@ -31,7 +32,7 @@ const ProductListContainer = ({ title, filters, settings_list, settings_item, re
         <h2>{ title }</h2>
         {
             (loading) ?
-                <label>Loading ...</label> :
+                <Loading /> :
                 <>
                     <ProductList
                         products={products}

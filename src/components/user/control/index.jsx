@@ -2,6 +2,7 @@ import { useContext } from 'react';
 import { useHistory } from 'react-router';
 
 import UserContext from '../../../contexts/user';
+import Loading from '../../loading';
 
 import './style.scss';
 
@@ -9,7 +10,7 @@ const UserControl = ({ onChange = () => {} }) => {
     const {loggedIn, loading, user, logOut} = useContext(UserContext);
     const history = useHistory();
 
-    if (loading) return <label>Loading ...</label>;
+    if (loading) return <Loading />;
 
     if (!loggedIn) return <></>;
 

@@ -4,6 +4,7 @@ import ProductsContext from '../../../contexts/products';
 
 import ProductDetailt from "../detail";
 import ProductListContainer from "../listContainer";
+import Loading from '../../loading';
 
 import "./style.scss";
 
@@ -32,7 +33,7 @@ const ProductDetailContainer = ({ filter }) => {
 
     return <div className={"product-detail-container app-width"}>
         {
-            !product ? <label>Loading ...</label> :
+            !product ? <Loading /> :
                 <>
                     <ProductDetailt product={product} />
                     <ProductListContainer

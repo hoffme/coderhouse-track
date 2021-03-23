@@ -3,6 +3,7 @@ import './style.scss';
 import { useContext, useEffect, useState } from 'react';
 
 import CategoryContext from '../../../contexts/category';
+import Loading from '../../loading';
 
 import CategoryList from '../list';
 
@@ -26,7 +27,7 @@ const CategoryListContainer = ({ title, filters, settings_list, settings_item}) 
         { title && <h2>{ title }</h2> }
         {
             (loading) ?
-                <label>Loading ...</label> :
+                <Loading /> :
                 <CategoryList
                     categories={categories}    
                     settings={settings_list}

@@ -9,6 +9,7 @@ import OrderList from '../../components/orders/list';
 
 import './style.scss';
 import OrderDetail from '../../components/orders/detail';
+import Loading from '../../components/loading';
 
 const SectionInfo = () => {
     const { user } = useContext(UserContext);
@@ -51,7 +52,7 @@ const UserPage = ({match}) => {
     const { loading, loggedIn } = useContext(UserContext);
     const history = useHistory();
 
-    if (loading) return <label>Loading ...</label>;
+    if (loading) return <Loading />
     
     if (!loggedIn) history.push('/');
 
